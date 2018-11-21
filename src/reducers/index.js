@@ -1,11 +1,21 @@
 import { combineReducers } from 'redux';
 import * as actions from '../actions';
 
+const totalUsers = (state = 0, action) => {
+  switch (action.type) {
+    case actions.TOTAL_USERS_UPDATE:
+      const { payload: { number } } = action;
+      return number;
+    default:
+      return state
+  }
+};
+
 const users = (state = [], action) => {
   switch (action.type) {
     case actions.USERS_GET_SUCCESS:
       const { payload: { items } } = action;
-      return [...state, ...items];
+      return [...items];
     default:
       return state
   }
@@ -27,6 +37,7 @@ const query = (state = '', action) => {
 const rootReducer = combineReducers({
   query,
   users,
+  totalUsers,
 });
 
 export default rootReducer;
