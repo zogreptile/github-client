@@ -8,6 +8,7 @@ const initStore = {
   users: [],
   isDataFetching: false,
   userInfo: {},
+  repos: [],
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

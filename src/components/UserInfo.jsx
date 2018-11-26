@@ -59,6 +59,8 @@ class UserInfo extends React.Component {
             }
           </List>
           <Divider />
+
+          
         </Segment>
       </Sidebar>
     );

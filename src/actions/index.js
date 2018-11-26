@@ -14,6 +14,7 @@ export const updateTotalUsers = (number) => ({
   payload: { number }
 });
 
+// ===== GET USERS
 export const USERS_GET_REQUEST = 'USERS_GET_REQUEST';
 export const getUsersRequest = () => ({
   type: USERS_GET_REQUEST,
@@ -53,6 +54,7 @@ export const getUsers = query => (dispatch) => {
     );
 };
 
+// ===== GET USERINFO
 export const USERINFO_GET_REQUEST = 'USERINFO_GET_REQUEST';
 export const getUserinfoRequest = () => ({
   type: USERINFO_GET_REQUEST,
@@ -82,12 +84,52 @@ export const getUserinfo = query => (dispatch) => {
     .then(
       (res) => {
         const { data } = res;
-        console.log('RESPONSE: ', data);
+        console.log('RESPONSE_INFO: ', data);
         dispatch(getUserinfoSuccess(data));
       },
       (err) => {
         console.log(err);
         dispatch(getUserinfoFailure(err));
+      }
+    );
+};
+
+// ===== GET REPOS
+export const REPOS_GET_REQUEST = 'REPOS_GET_REQUEST';
+export const getReposRequest = () => ({
+  type: REPOS_GET_REQUEST,
+});
+
+export const REPOS_GET_SUCCESS = 'REPOS_GET_SUCCESS';
+export const getReposSuccess = data => ({
+  type: REPOS_GET_SUCCESS,
+  payload: {
+    data,
+  },
+});
+
+export const REPOS_GET_FAILURE = 'REPOS_GET_FAILURE';
+export const getReposFailure = message => ({
+  type: REPOS_GET_FAILURE,
+  payload: {
+    message
+  },
+});
+
+export const getRepos = query => (dispatch) => {
+  dispatch(getReposRequest());
+
+  return axios
+    .get(api.getRepos(query))
+    .then(
+      (res) => {
+        const { data } = res;
+        console.log('RESPONSE_REPOS: ', data);
+        dispatch(getReposSuccess(data));
+      },
+      (err) => {
+        console.log(err);
+        dispatch(getReposFailure(err));
       }
     );
 };

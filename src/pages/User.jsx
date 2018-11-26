@@ -7,17 +7,13 @@ import {
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import UserInfo from '../components/UserInfo';
+import Repos from '../components/Repos';
 import * as actions from '../actions';
-
-const mapStateToProps = state => ({
-  userInfo: state.userInfo,
-  isDataFetching: state.isDataFetching,
-});
-
 class User extends React.Component {
   componentDidMount() {
-    const { match, getUserinfo } = this.props;
+    const { match, getUserinfo, getRepos } = this.props;
     getUserinfo(match.params.username);
+    getRepos(match.params.username);
   }
 
   render() {
@@ -28,8 +24,9 @@ class User extends React.Component {
           <Loader />
         </Dimmer>
         <UserInfo />
-        <Container text>
-        </Container>
+        <div style={{marginLeft: '275px'}}>
+          <Repos />
+        </div>
       </>
     );
   }
