@@ -34,10 +34,36 @@ const query = (state = '', action) => {
   }
 };
 
+const isDataFetching = (state = false, action) => {
+  switch (action.type) {
+    case actions.USERS_GET_REQUEST:
+    case actions.USERINFO_GET_REQUEST:
+      return true;
+    case actions.USERS_GET_SUCCESS:
+    case actions.USERS_GET_FAILURE:
+    case actions.USERINFO_GET_SUCCESS:
+    case actions.USERINFO_GET_FAILURE:
+    default:
+      return false
+  }
+};
+
+const userInfo = (state = {}, action) => {
+  switch (action.type) {
+    case actions.USERINFO_GET_SUCCESS:
+      const { payload: { data } } = action;
+      return data;
+    default:
+      return state
+  }
+};
+
 const rootReducer = combineReducers({
   query,
   users,
   totalUsers,
+  isDataFetching,
+  userInfo,
 });
 
 export default rootReducer;

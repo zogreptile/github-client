@@ -1,6 +1,13 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { Form, Input, Button, Segment } from 'semantic-ui-react';
+import {
+  Header,
+  Form,
+  Input,
+  Button,
+  Segment,
+  Container,
+} from 'semantic-ui-react';
 import { getUsers, updateQuery } from '../actions';
 
 const mapStateToProps = state => ({
@@ -27,16 +34,19 @@ class SearchForm extends React.Component {
   render() {
     const { query } = this.props;
     return (
-      <Segment>
-        <Form onSubmit={this.handleSubmit}>
-          <Input
-            value={query}
-            onChange={this.handleChange}
-            fluid
-            label={<Button type='submit'>Submit</Button>}
-            labelPosition='right'
-          />
-        </Form>
+      <Segment inverted>
+        <Container text>
+          <Header as="h1" content="Search github users" inverted/>
+          <Form onSubmit={this.handleSubmit}>
+            <Input
+              value={query}
+              onChange={this.handleChange}
+              fluid
+              label={<Button type='submit'>Submit</Button>}
+              labelPosition='right'
+            />
+          </Form>
+        </Container>
       </Segment>
     );
   }

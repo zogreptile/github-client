@@ -6,6 +6,8 @@ const initStore = {
   query: '',
   totalUsers: 0,
   users: [],
+  isDataFetching: false,
+  userInfo: {},
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

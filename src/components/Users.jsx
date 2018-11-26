@@ -1,40 +1,50 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { Grid, Card, Image } from 'semantic-ui-react';
-// import { } from '../actions';
+import {
+  Container,
+  Grid,
+  Card,
+  Image,
+  Loader,
+  Dimmer,
+} from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 const mapStateToProps = state => ({
   users: state.users,
+  isDataFetching: state.isDataFetching,
 });
 
-// const mapDispatchToProps = {
-//   getUsers,
-//   updateQuery,
-// };
-
 const userCard = data => (
-  <Card href={data.html_url}>
-    <Image src={data.avatar_url} />
-    <Card.Content>
-      <Card.Header>{data.login}</Card.Header>
-    </Card.Content>
-  </Card>
+  <Link to={`/userpage/${data.login}`}>
+    <Card>
+      <Image src={data.avatar_url} />
+      <Card.Content>
+        <Card.Header>{data.login}</Card.Header>
+      </Card.Content>
+    </Card>
+  </Link>
 );
 
 class Users extends React.Component {
   render() {
-    const { users } = this.props;
+    const { users, isDataFetching } = this.props;
     if (!users.length) {
       return null;
     }
     return (
-      <Grid columns={3}>
-        {users.map(el => (
-          <Grid.Column key={el.id}>
-            {userCard(el)}
-          </Grid.Column>
-        ))}
-      </Grid>
+      <Container text>
+        <Dimmer active={isDataFetching}>
+          <Loader />
+        </Dimmer>
+        <Grid columns={3}>
+          {users.map(el => (
+            <Grid.Column key={el.id}>
+              {userCard(el)}
+            </Grid.Column>
+          ))}
+        </Grid>
+      </Container>
     );
   }
 };
