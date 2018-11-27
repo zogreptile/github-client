@@ -34,7 +34,7 @@ class SearchForm extends React.Component {
   render() {
     const { query } = this.props;
     return (
-      <Segment inverted>
+      <Segment inverted size='large'>
         <Container text>
           <Header as="h1" content="Search github users" inverted/>
           <Form onSubmit={this.handleSubmit}>
