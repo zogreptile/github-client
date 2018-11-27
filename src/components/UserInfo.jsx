@@ -8,6 +8,7 @@ import {
   List,
   Divider,
 } from 'semantic-ui-react';
+import ReposFilter from '../components/ReposFilter';
 
 const mapStateToProps = state => ({
   userInfo: state.userInfo,
@@ -60,7 +61,7 @@ class UserInfo extends React.Component {
           </List>
           <Divider />
 
-          
+          <ReposFilter />
         </Segment>
       </Sidebar>
     );
