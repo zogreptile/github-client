@@ -8,12 +8,6 @@ export const updateQuery = value => ({
   payload: { value },
 });
 
-export const TOTAL_USERS_UPDATE = 'TOTAL_USERS_UPDATE';
-export const updateTotalUsers = (number) => ({
-  type: TOTAL_USERS_UPDATE,
-  payload: { number }
-});
-
 // ===== GET USERS
 export const USERS_GET_REQUEST = 'USERS_GET_REQUEST';
 export const getUsersRequest = () => ({
@@ -24,7 +18,7 @@ export const USERS_GET_SUCCESS = 'USERS_GET_SUCCESS';
 export const getUsersSuccess = data => ({
   type: USERS_GET_SUCCESS,
   payload: {
-    items: data,
+    data,
   },
 });
 
@@ -44,8 +38,8 @@ export const getUsers = query => (dispatch) => {
     .then(
       (res) => {
         const { data } = res;
-        dispatch(getUsersSuccess(data.items));
-        dispatch(updateTotalUsers(data.total_count));
+        console.log('GET_USERS: ', data);
+        dispatch(getUsersSuccess(data));
       },
       (err) => {
         console.log(err);

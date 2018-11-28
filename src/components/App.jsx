@@ -9,7 +9,7 @@ const App = ({ store }) => (
     <HashRouter >
       <>
         <Route exact path='/' component={Index} />
-        <Route path='/userpage/:username' component={User} />
+        <Route path='/:username' component={User} />
       </>
     </HashRouter >
   </Provider>

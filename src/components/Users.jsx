@@ -16,7 +16,7 @@ const mapStateToProps = state => ({
 });
 
 const userCard = data => (
-  <Link to={`/userpage/${data.login}`}>
+  <Link to={`/${data.login}`}>
     <Card>
       <Image src={data.avatar_url} />
       <Card.Content>

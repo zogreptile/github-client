@@ -3,9 +3,9 @@ import * as actions from '../actions';
 
 const totalUsers = (state = 0, action) => {
   switch (action.type) {
-    case actions.TOTAL_USERS_UPDATE:
-      const { payload: { number } } = action;
-      return number;
+    case actions.USERS_GET_SUCCESS:
+      const { payload: { data : { total_count } } } = action;
+      return total_count;
     default:
       return state
   }
@@ -14,7 +14,7 @@ const totalUsers = (state = 0, action) => {
 const users = (state = [], action) => {
   switch (action.type) {
     case actions.USERS_GET_SUCCESS:
-      const { payload: { items } } = action;
+      const { payload: { data: { items } } } = action;
       return [...items];
     default:
       return state
