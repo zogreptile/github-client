@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import * as actions from '../actions';
+import actions from '../actions';
 
 const totalUsers = (state = 0, action) => {
   switch (action.type) {

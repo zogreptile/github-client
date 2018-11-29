@@ -8,15 +8,15 @@ import {
   Segment,
   Container,
 } from 'semantic-ui-react';
-import { getUsers, updateQuery } from '../actions';
+import actions from '../actions';
 
 const mapStateToProps = state => ({
   query: state.query,
 });
 
 const mapDispatchToProps = {
-  getUsers,
-  updateQuery,
+  getUsers: actions.getUsers,
+  updateQuery: actions.updateQuery,
 };
 
 class SearchForm extends React.Component {

@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import UserInfo from '../components/UserInfo';
 import Repos from '../components/Repos';
-import * as actions from '../actions';
+import actions from '../actions';
 class User extends React.Component {
   componentDidMount() {
     const { match, getUserinfo, getRepos } = this.props;
