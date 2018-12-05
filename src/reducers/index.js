@@ -68,6 +68,23 @@ const repos = (state = [], action) => {
   }
 };
 
+const filterInitState = {
+  hasOpenIssues: null,
+  hasTopics: null,
+  starred: '',
+  lastUpdateDate: null,
+  type: 'all',
+}
+const filter = (state = filterInitState, action) => {
+  switch (action.type) {
+    case actions.FILTER_STARRED:
+      const { payload: { number } } = action;
+      return { ...state, starred: number };
+    default:
+      return state
+  }
+};
+
 const rootReducer = combineReducers({
   query,
   users,
@@ -75,6 +92,7 @@ const rootReducer = combineReducers({
   isDataFetching,
   userInfo,
   repos,
+  filter,
 });
 
 export default rootReducer;

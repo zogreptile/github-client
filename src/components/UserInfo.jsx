@@ -13,12 +13,6 @@ import ReposFilter from '../components/ReposFilter';
 const mapStateToProps = state => ({
   userInfo: state.userInfo,
 });
-
-// const mapDispatchToProps = {
-//   getUsers,
-//   updateQuery,
-// };
-
 class UserInfo extends React.Component {
   render() {
     const { userInfo } = this.props;

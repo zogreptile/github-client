@@ -13,7 +13,11 @@ import actions from '../actions';
 const mapStateToProps = state => ({
   isDataFetching: state.isDataFetching,
   repos: state.repos,
+  filter: state.filter,
 });
+
+const filterStarred = (coll, stars) =>
+  coll.filter(el => el.stargazers_count >= stars)
 
 class Repos extends React.Component {
   formatUpdatedDate(dateStr) {
@@ -28,8 +32,8 @@ class Repos extends React.Component {
     if (!repos.length) {
       return <h1>This user hasn't public repositories.</h1>
     }
-
-    return repos.map(el => 
+    const { filter: { starred } } = this.props;
+    return filterStarred(repos, starred).map(el => 
       <Card key={el.id}>
         <Card.Content>
           <Card.Header>{el.name}</Card.Header>

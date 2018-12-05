@@ -25,7 +25,9 @@ class User extends React.Component {
         </Dimmer>
         <UserInfo />
         <div style={{marginLeft: '275px'}}>
-          <Repos />
+          <Container>
+            <Repos />
+          </Container>
         </div>
       </>
     );

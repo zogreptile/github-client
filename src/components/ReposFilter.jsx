@@ -1,20 +1,25 @@
 import React from 'react';
+import { connect } from "react-redux";
 import {
   Form,
   Checkbox,
   Radio
 } from 'semantic-ui-react';
 import { DateInput } from 'semantic-ui-calendar-react';
-import { connect } from "react-redux";
 import actions from '../actions';
 
 const mapStateToProps = state => ({
-  
+  filter: state.filter,
 });
 
 class ReposFilter extends React.Component {
+  handleStarredChange = ({ target: { value } }) => {
+    const { starredFilter } = this.props;
+    starredFilter(value);
+  }
+
   render() {
-    const { isDataFetching, repos } = this.props;
+    const { filter } = this.props;
     return (
       <>
         <h2>Filter</h2>
@@ -27,7 +32,10 @@ class ReposFilter extends React.Component {
           </Form.Field>
           <Form.Field>
             <label>Starred >= X times</label>
-            <input />
+            <input
+              value={filter.starred}
+              onChange={this.handleStarredChange}
+            />
           </Form.Field>
           <Form.Field>
             <label>updated after X date</label>
