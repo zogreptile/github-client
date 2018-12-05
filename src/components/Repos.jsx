@@ -42,8 +42,8 @@ class Repos extends React.Component {
           <Divider />
           <Grid columns='2'>
             <Grid.Column>
-              {el.fork ? <Icon name='fork' /> : null}
-              {el.stargazers_count ? <span><Icon name='star' aria-label='stargazers' /> {el.stargazers_count}</span> : null}
+              {el.fork && <Icon name='fork' />}
+              {el.stargazers_count && <span><Icon name='star' aria-label='stargazers' /> {el.stargazers_count}</span>}
             </Grid.Column>
             <Grid.Column textAlign='right'>
               {el.language}
@@ -61,7 +61,7 @@ class Repos extends React.Component {
         <Dimmer active={isDataFetching} inverted page>
           <Loader />
         </Dimmer>
-        <Card.Group>
+        <Card.Group itemsPerRow='3'>
           {this.renderCards(repos)}
         </Card.Group>
       </>

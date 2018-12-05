@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Container,
+  Grid,
   Loader,
   Dimmer,
 } from 'semantic-ui-react';
@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import UserInfo from '../components/UserInfo';
 import Repos from '../components/Repos';
+import ReposFilter from '../components/ReposFilter';
 import actions from '../actions';
 class User extends React.Component {
   componentDidMount() {
@@ -23,12 +24,15 @@ class User extends React.Component {
         <Dimmer active={isDataFetching} inverted page>
           <Loader />
         </Dimmer>
-        <UserInfo />
-        <div style={{marginLeft: '275px'}}>
-          <Container>
+        <Grid>
+          <Grid.Column width={4}>
+            <UserInfo />
+            <ReposFilter />
+          </Grid.Column>
+          <Grid.Column width={12}>
             <Repos />
-          </Container>
-        </div>
+          </Grid.Column>
+        </Grid>
       </>
     );
   }

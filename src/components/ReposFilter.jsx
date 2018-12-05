@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import {
   Form,
   Checkbox,
-  Radio
+  Radio,
+  Segment,
 } from 'semantic-ui-react';
 import { DateInput } from 'semantic-ui-calendar-react';
 import actions from '../actions';
@@ -21,7 +22,7 @@ class ReposFilter extends React.Component {
   render() {
     const { filter } = this.props;
     return (
-      <>
+      <Segment>
         <h2>Filter</h2>
         <Form>
           <Form.Field>
@@ -58,7 +59,7 @@ class ReposFilter extends React.Component {
             />
           </Form.Group>
         </Form>
-      </>
+      </Segment>
     );
   }
 } 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
 import {
-  Container,
   Grid,
   Card,
   Image,
@@ -15,7 +14,7 @@ const mapStateToProps = state => ({
   isDataFetching: state.isDataFetching,
 });
 
-const userCard = data => (
+const UserCard = data => (
   <Link to={`/${data.login}`}>
     <Card>
       <Image src={data.avatar_url} />
@@ -26,27 +25,29 @@ const userCard = data => (
   </Link>
 );
 
-class Users extends React.Component {
-  render() {
-    const { users, isDataFetching } = this.props;
-    if (!users.length) {
-      return null;
-    }
-    return (
-      <Container text>
-        <Dimmer active={isDataFetching}>
-          <Loader />
-        </Dimmer>
-        <Grid columns={3}>
-          {users.map(el => (
-            <Grid.Column key={el.id}>
-              {userCard(el)}
-            </Grid.Column>
-          ))}
-        </Grid>
-      </Container>
-    );
+const Users = ({ users, isDataFetching }) => {
+  if (!users.length) {
+    return null;
   }
+
+  const topMargin = {
+    marginTop: '1rem'
+  };
+
+  return (
+    <>
+      <Dimmer active={isDataFetching}>
+        <Loader />
+      </Dimmer>
+      <Grid doubling columns={5} style={topMargin}>
+        {users.map(el => (
+          <Grid.Column key={el.id}>
+            {UserCard(el)}
+          </Grid.Column>
+        ))}
+      </Grid>
+    </>
+  );
 };
 
 export default connect(mapStateToProps)(Users);

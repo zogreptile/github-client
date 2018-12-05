@@ -28,20 +28,18 @@ class SearchForm extends React.Component {
   render() {
     const { query } = this.props;
     return (
-      <Segment inverted size='large'>
-        <Container text>
-          <Header as="h1" content="Search github users" inverted/>
-          <Form onSubmit={this.handleSubmit}>
-            <Input
-              value={query}
-              onChange={this.handleChange}
-              fluid
-              label={<Button type='submit'>Submit</Button>}
-              labelPosition='right'
-            />
-          </Form>
-        </Container>
-      </Segment>
+      <>
+        <Header as="h1" content="Search github users" />
+        <Form onSubmit={this.handleSubmit}>
+          <Input
+            value={query}
+            onChange={this.handleChange}
+            fluid
+            label={<Button type='submit'>Submit</Button>}
+            labelPosition='right'
+          />
+        </Form>
+      </>
     );
   }
 };

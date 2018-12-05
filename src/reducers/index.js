@@ -71,7 +71,7 @@ const repos = (state = [], action) => {
 const filterInitState = {
   hasOpenIssues: null,
   hasTopics: null,
-  starred: '',
+  starred: 0,
   lastUpdateDate: null,
   type: 'all',
 }
