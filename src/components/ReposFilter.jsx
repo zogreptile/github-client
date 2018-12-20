@@ -30,6 +30,11 @@ class ReposFilter extends React.Component {
     starredFilter(value);
   }
 
+  handleLastUpdateDate = (e, { value }) => {
+    const { lastUpdatedFilter } = this.props;
+    lastUpdatedFilter(value);
+  }
+
   handleTypeChange = (e, { value }) => {
     const { typeFilter } = this.props;
     typeFilter(value);
@@ -69,8 +74,14 @@ class ReposFilter extends React.Component {
             />
           </Form.Field>
           <Form.Field>
-            <label>updated after X date</label>
-            <DateInput />
+            <label>Updated after X date</label>
+            <DateInput
+              name="date"
+              placeholder="Date"
+              value={filter.lastUpdateDate}
+              iconPosition="left"
+              onChange={this.handleLastUpdateDate}
+            />
           </Form.Field>
 
           {/* TYPES OF REPOS */}

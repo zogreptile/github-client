@@ -75,7 +75,7 @@ const filterInitState = {
   hasOpenIssues: false,
   hasTopics: false,
   starred: 0,
-  // lastUpdateDate: null,
+  lastUpdateDate: '',
   type: 'all',
 }
 const filter = (state = filterInitState, action) => {
@@ -89,6 +89,9 @@ const filter = (state = filterInitState, action) => {
     case actions.FILTER_STARRED:
       const { payload: { number } } = action;
       return { ...state, starred: number };
+    case actions.FILTER_LAST_UPDATED:
+      const { payload: { date } } = action;
+      return { ...state, lastUpdateDate: date };
     case actions.FILTER_TYPE:
       const { payload: { name } } = action;
       return { ...state, type: name };

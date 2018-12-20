@@ -8,6 +8,7 @@ import {
   Icon,
 } from 'semantic-ui-react';
 import { connect } from "react-redux";
+import moment from 'moment';
 import actions from '../actions';
 import applyFilters from '../utlis/applyFilters';
 
@@ -17,14 +18,6 @@ const mapStateToProps = state => ({
   filter: state.filter,
 });
 class Repos extends React.Component {
-  formatUpdatedDate(dateStr) {
-    const parsedDate = new Date(dateStr);
-    const day = parsedDate.getDate();
-    const month = parsedDate.getMonth() + 1;
-    const year = parsedDate.getFullYear();
-    return `${day}.${month}.${year}`;
-  }
-
   renderCards(repos) {
     const { filter } = this.props;
     const filteredRepos = applyFilters(repos, filter);
@@ -37,7 +30,7 @@ class Repos extends React.Component {
       <Card key={el.id}>
         <Card.Content>
           <Card.Header>{el.name}</Card.Header>
-          <Card.Meta>Updated at: {this.formatUpdatedDate(el.updated_at)}</Card.Meta>
+          <Card.Meta>Updated at: {moment(el.updated_at).format('DD.MM.YYYY')}</Card.Meta>
           <Card.Description>{el.description}</Card.Description>
           <Divider />
           <Grid columns='2'>

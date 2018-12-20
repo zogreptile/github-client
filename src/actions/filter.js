@@ -18,6 +18,12 @@ export const starredFilter = number => ({
   }
 });
 
+export const FILTER_LAST_UPDATED = 'FILTER_LAST_UPDATED';
+export const lastUpdatedFilter = date => ({
+  type: FILTER_LAST_UPDATED,
+  payload: { date },
+});
+
 export const FILTER_TYPE = 'FILTER_TYPE';
 export const typeFilter = name => ({
   type: FILTER_TYPE,
