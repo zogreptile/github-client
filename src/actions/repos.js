@@ -22,11 +22,14 @@ export const getReposFailure = message => ({
   },
 });
 
-export const getRepos = query => (dispatch) => {
+export const getRepos = (username) => (dispatch) => {
   dispatch(getReposRequest());
+  const headers = {
+    'Accept': 'application/vnd.github.mercy-preview+json',
+  };
 
   return axios
-    .get(api.getRepos(query))
+    .get(api.getRepos(username), { headers })
     .then(
       (res) => {
         const { data } = res;
@@ -34,7 +37,6 @@ export const getRepos = query => (dispatch) => {
         dispatch(getReposSuccess(data));
       },
       (err) => {
-        console.log(err);
         dispatch(getReposFailure(err));
       }
     );

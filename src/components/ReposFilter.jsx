@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import {
+  Button,
   Form,
   Checkbox,
   Radio,
@@ -14,22 +15,51 @@ const mapStateToProps = state => ({
 });
 
 class ReposFilter extends React.Component {
+  handleIssuesFilter = (e, data) => {
+    const { issuesFilter } = this.props;
+    issuesFilter(data.checked);
+  }
+
+  handleTopicsFilter = (e, data) => {
+    const { topicsFilter } = this.props;
+    topicsFilter(data.checked);
+  }
+
   handleStarredChange = ({ target: { value } }) => {
     const { starredFilter } = this.props;
     starredFilter(value);
   }
 
+  handleTypeChange = (e, { value }) => {
+    const { typeFilter } = this.props;
+    typeFilter(value);
+  }
+
+  handleFilterReset = () => {
+    const { resetFilter } = this.props;
+    resetFilter();
+  }
+
   render() {
     const { filter } = this.props;
+
     return (
       <Segment>
         <h2>Filter</h2>
         <Form>
           <Form.Field>
-            <Checkbox label='Has open issues' />
+            <Checkbox
+              checked={filter.hasOpenIssues}
+              label='Has open issues'
+              onChange={this.handleIssuesFilter}
+            />
           </Form.Field>
           <Form.Field>
-            <Checkbox label='Has topics' />
+            <Checkbox
+              checked={filter.hasTopics}
+              label='Has topics'
+              onChange={this.handleTopicsFilter}
+            />
           </Form.Field>
           <Form.Field>
             <label>Starred >= X times</label>
@@ -43,21 +73,42 @@ class ReposFilter extends React.Component {
             <DateInput />
           </Form.Field>
 
-          <Form.Group inline>
+          {/* TYPES OF REPOS */}
+          <Form.Field>
             <label>Type</label>
-            <Form.Radio
-              label='All'
-              value='all'
-            />
-            <Form.Radio
-              label='Forks'
-              value='forks'
-            />
-            <Form.Radio
-              label='Sources'
-              value='sources'
-            />
-          </Form.Group>
+            <Form.Field>
+              <Radio
+                label='All'
+                name='typeFilter'
+                value='all'
+                checked={filter.type === 'all'}
+                onChange={this.handleTypeChange}
+              />
+            </Form.Field>
+            <Form.Field>
+              <Radio
+                label='Forks'
+                name='typeFilter'
+                value='forks'
+                checked={filter.type === 'forks'}
+                onChange={this.handleTypeChange}
+              />
+            </Form.Field>
+            <Form.Field>
+              <Radio
+                label='Sources'
+                name='typeFilter'
+                value='sources'
+                checked={filter.type === 'sources'}
+                onChange={this.handleTypeChange}
+              />
+            </Form.Field>
+          </Form.Field>
+          <Button
+            content='Reset filters'
+            fluid={true}
+            onClick={this.handleFilterReset}
+          />
         </Form>
       </Segment>
     );

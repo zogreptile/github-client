@@ -9,16 +9,13 @@ import {
 } from 'semantic-ui-react';
 import { connect } from "react-redux";
 import actions from '../actions';
+import applyFilters from '../utlis/applyFilters';
 
 const mapStateToProps = state => ({
   isDataFetching: state.isDataFetching,
   repos: state.repos,
   filter: state.filter,
 });
-
-const filterStarred = (coll, stars) =>
-  coll.filter(el => el.stargazers_count >= stars)
-
 class Repos extends React.Component {
   formatUpdatedDate(dateStr) {
     const parsedDate = new Date(dateStr);
@@ -29,11 +26,14 @@ class Repos extends React.Component {
   }
 
   renderCards(repos) {
-    if (!repos.length) {
-      return <h1>This user hasn't public repositories.</h1>
+    const { filter } = this.props;
+    const filteredRepos = applyFilters(repos, filter);
+
+    if (!filteredRepos.length) {
+      return <h1>Nothing found</h1>
     }
-    const { filter: { starred } } = this.props;
-    return filterStarred(repos, starred).map(el => 
+
+    return filteredRepos.map(el => 
       <Card key={el.id}>
         <Card.Content>
           <Card.Header>{el.name}</Card.Header>
@@ -58,7 +58,7 @@ class Repos extends React.Component {
     const { isDataFetching, repos } = this.props;
     return (
       <>
-        <Dimmer active={isDataFetching} inverted page>
+        <Dimmer active={isDataFetching} inverted>
           <Loader />
         </Dimmer>
         <Card.Group itemsPerRow='3'>

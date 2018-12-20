@@ -38,11 +38,14 @@ const isDataFetching = (state = false, action) => {
   switch (action.type) {
     case actions.USERS_GET_REQUEST:
     case actions.USERINFO_GET_REQUEST:
+    case actions.REPOS_GET_REQUEST:
       return true;
     case actions.USERS_GET_SUCCESS:
     case actions.USERS_GET_FAILURE:
     case actions.USERINFO_GET_SUCCESS:
     case actions.USERINFO_GET_FAILURE:
+    case actions.REPOS_GET_SUCCESS:
+    case actions.REPOS_GET_FAILURE:
     default:
       return false
   }
@@ -69,17 +72,29 @@ const repos = (state = [], action) => {
 };
 
 const filterInitState = {
-  hasOpenIssues: null,
-  hasTopics: null,
+  hasOpenIssues: false,
+  hasTopics: false,
   starred: 0,
-  lastUpdateDate: null,
+  // lastUpdateDate: null,
   type: 'all',
 }
 const filter = (state = filterInitState, action) => {
   switch (action.type) {
+    case actions.FILTER_ISSUES:
+      const { payload: { value: issuesFilterValue } } = action;
+      return { ...state, hasOpenIssues: issuesFilterValue };
+    case actions.FILTER_TOPICS:
+      const { payload: { value: topicsFilterValue } } = action;
+      return { ...state, hasTopics: topicsFilterValue };
     case actions.FILTER_STARRED:
       const { payload: { number } } = action;
       return { ...state, starred: number };
+    case actions.FILTER_TYPE:
+      const { payload: { name } } = action;
+      return { ...state, type: name };
+    case actions.FILTER_RESET:
+    case actions.USERINFO_GET_SUCCESS:
+      return { ...filterInitState };
     default:
       return state
   }
