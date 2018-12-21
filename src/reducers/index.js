@@ -71,15 +71,15 @@ const repos = (state = [], action) => {
   }
 };
 
-const filterInitState = {
+const filterInit = {
   hasOpenIssues: false,
   hasTopics: false,
   starred: 0,
   lastUpdateDate: '',
   type: 'all',
   language: 'all',
-}
-const filter = (state = filterInitState, action) => {
+};
+const filter = (state = filterInit, action) => {
   switch (action.type) {
     case actions.FILTER_ISSUES:
       const { payload: { value: issuesFilterValue } } = action;
@@ -101,11 +101,31 @@ const filter = (state = filterInitState, action) => {
       return { ...state, language: value };
     case actions.FILTER_RESET:
     case actions.USERINFO_GET_SUCCESS:
-      return { ...filterInitState };
+      return { ...filterInit };
     default:
       return state
   }
 };
+
+const sortInit = {
+  type: 'none',
+  direction: 'desc',
+};
+const sort = (state = sortInit, action) => {
+  switch (action.type) {
+    case actions.SORT_TYPE:
+      const { payload: { type } } = action;
+      return { ...state, type };
+    case actions.SORT_DIRECTION:
+      const { payload: { direction } } = action;
+      return { ...state, direction };
+    case actions.SORT_RESET:
+    case actions.USERINFO_GET_SUCCESS:
+      return { ...sortInit };
+    default:
+      return state
+  }
+}
 
 const rootReducer = combineReducers({
   query,
@@ -115,6 +135,7 @@ const rootReducer = combineReducers({
   userInfo,
   repos,
   filter,
+  sort,
 });
 
 export default rootReducer;

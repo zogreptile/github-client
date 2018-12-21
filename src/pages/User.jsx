@@ -7,6 +7,7 @@ import { withRouter } from "react-router-dom";
 import UserInfo from '../components/UserInfo';
 import Repos from '../components/Repos';
 import ReposFilter from '../components/ReposFilter';
+import ReposSort from '../components/ReposSort';
 import actions from '../actions';
 class User extends React.Component {
   componentDidMount() {
@@ -22,6 +23,7 @@ class User extends React.Component {
         <Grid.Column width={4}>
           <UserInfo />
           <ReposFilter />
+          <ReposSort />
         </Grid.Column>
         <Grid.Column width={12}>
           <Repos />

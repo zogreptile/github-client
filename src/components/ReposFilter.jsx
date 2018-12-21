@@ -42,14 +42,14 @@ class ReposFilter extends React.Component {
     typeFilter(value);
   }
 
-  handleFilterReset = () => {
-    const { resetFilter } = this.props;
-    resetFilter();
-  }
-
   handleLanguageFilter = (e, { value }) => {
     const { languageFilter } = this.props;
     languageFilter(value);
+  }
+
+  handleFilterReset = () => {
+    const { resetFilter } = this.props;
+    resetFilter();
   }
 
   render() {
@@ -129,7 +129,7 @@ class ReposFilter extends React.Component {
             selection
             label='Language'
             options={languages}
-            defaultValue={filter.language}
+            value={filter.language}
             placeholder='Language'
             onChange={this.handleLanguageFilter}
           />
