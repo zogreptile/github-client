@@ -30,6 +30,12 @@ export const typeFilter = name => ({
   payload: { name },
 });
 
+export const FILTER_LANGUAGE = 'FILTER_LANGUAGE';
+export const languageFilter = value => ({
+  type: FILTER_LANGUAGE,
+  payload: { value },
+});
+
 export const FILTER_RESET = 'FILTER_RESET';
 export const resetFilter = () => ({
   type: FILTER_RESET,

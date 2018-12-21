@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment, { lang } from 'moment';
 
 const filterFunctions = {
   hasOpenIssues: (repo, value) => {
@@ -32,6 +32,12 @@ const filterFunctions = {
     }
     return true;
   },
+  language: (repo, language) => {
+    if (language === 'all') {
+      return true;
+    }
+    return repo.language === language ? true : false;
+  }
 };
 
 const applyFilters = (repos, filters) => {

@@ -77,6 +77,7 @@ const filterInitState = {
   starred: 0,
   lastUpdateDate: '',
   type: 'all',
+  language: 'all',
 }
 const filter = (state = filterInitState, action) => {
   switch (action.type) {
@@ -95,6 +96,9 @@ const filter = (state = filterInitState, action) => {
     case actions.FILTER_TYPE:
       const { payload: { name } } = action;
       return { ...state, type: name };
+    case actions.FILTER_LANGUAGE:
+      const { payload: { value } } = action;
+      return { ...state, language: value };
     case actions.FILTER_RESET:
     case actions.USERINFO_GET_SUCCESS:
       return { ...filterInitState };

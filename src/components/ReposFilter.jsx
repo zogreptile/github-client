@@ -9,8 +9,10 @@ import {
 } from 'semantic-ui-react';
 import { DateInput } from 'semantic-ui-calendar-react';
 import actions from '../actions';
+import getLanguages from '../utlis/getLanguages';
 
 const mapStateToProps = state => ({
+  repos: state.repos,
   filter: state.filter,
 });
 
@@ -45,8 +47,14 @@ class ReposFilter extends React.Component {
     resetFilter();
   }
 
+  handleLanguageFilter = (e, { value }) => {
+    const { languageFilter } = this.props;
+    languageFilter(value);
+  }
+
   render() {
-    const { filter } = this.props;
+    const { repos, filter } = this.props;
+    const languages = getLanguages(repos);
 
     return (
       <Segment>
@@ -114,6 +122,17 @@ class ReposFilter extends React.Component {
                 onChange={this.handleTypeChange}
               />
             </Form.Field>
+          </Form.Field>
+          <Form.Field>
+          <Form.Dropdown
+            fluid
+            selection
+            label='Language'
+            options={languages}
+            defaultValue={filter.language}
+            placeholder='Language'
+            onChange={this.handleLanguageFilter}
+          />
           </Form.Field>
           <Button
             content='Reset filters'
