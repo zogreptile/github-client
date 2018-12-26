@@ -40,7 +40,7 @@ const filterFunctions = {
   }
 };
 
-const applyFilters = (repos, filters) => {
+const filterRepos = (repos, filters) => {
   const filterNames = Object.keys(filters);
 
   return repos.reduce((acc, repo) => {
@@ -55,4 +55,4 @@ const applyFilters = (repos, filters) => {
   }, []);
 };
 
-export default applyFilters;
+export default filterRepos;

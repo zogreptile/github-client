@@ -10,8 +10,8 @@ import {
 import { connect } from "react-redux";
 import moment from 'moment';
 import actions from '../actions';
-import applyFilters from '../utlis/applyFilters';
-import applySorting from '../utlis/applySorting';
+import filterRepos from '../utlis/filterRepos';
+import sortRepos from '../utlis/sortRepos';
 
 const mapStateToProps = state => ({
   isDataFetching: state.isDataFetching,
@@ -22,13 +22,13 @@ const mapStateToProps = state => ({
 class Repos extends React.Component {
   renderCards(repos) {
     const { filter, sort } = this.props;
-    const filteredRepos = applyFilters(repos, filter);
+    const filteredRepos = filterRepos(repos, filter);
 
     if (!filteredRepos.length) {
       return <h1>Nothing found</h1>
     }
 
-    const sortedRepos = applySorting(filteredRepos, sort);
+    const sortedRepos = sortRepos(filteredRepos, sort);
 
     return sortedRepos.map(el => 
       <Card key={el.id}>
