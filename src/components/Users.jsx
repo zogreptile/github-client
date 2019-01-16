@@ -36,7 +36,7 @@ const Users = ({ users, isDataFetching }) => {
 
   return (
     <>
-      <Dimmer active={isDataFetching}>
+      <Dimmer active={isDataFetching} inverted>
         <Loader />
       </Dimmer>
       <Grid doubling columns={5} style={topMargin}>

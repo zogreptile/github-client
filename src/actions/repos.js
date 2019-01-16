@@ -33,6 +33,7 @@ export const getRepos = (username) => (dispatch) => {
     .then(
       (res) => {
         const { data } = res;
+        console.log('RESPONSE_FULL: ', res);
         console.log('RESPONSE_REPOS: ', data);
         dispatch(getReposSuccess(data));
       },

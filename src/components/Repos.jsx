@@ -8,7 +8,7 @@ import {
   Icon,
 } from 'semantic-ui-react';
 import { connect } from "react-redux";
-import moment from 'moment';
+import RepoCard from '../components/RepoCard';
 import actions from '../actions';
 import filterRepos from '../utlis/filterRepos';
 import sortRepos from '../utlis/sortRepos';
@@ -16,39 +16,33 @@ import sortRepos from '../utlis/sortRepos';
 const mapStateToProps = state => ({
   isDataFetching: state.isDataFetching,
   repos: state.repos,
+  repoInfo: state.repoInfo,
   filter: state.filter,
   sort: state.sort,
 });
 class Repos extends React.Component {
-  renderCards(repos) {
-    const { filter, sort } = this.props;
-    const filteredRepos = filterRepos(repos, filter);
+  handleClick = (username, reponame) => () => {
+    const { getRepoInfo } = this.props;
+    getRepoInfo(username, reponame);
+  }
 
-    if (!filteredRepos.length) {
+  renderItems = (repos) => {
+    const { filter, sort } = this.props;
+    const processedRepos = sortRepos(
+      filterRepos(repos, filter),
+      sort,
+    );
+
+    if (!processedRepos.length) {
       return <h1>Nothing found</h1>
     }
 
-    const sortedRepos = sortRepos(filteredRepos, sort);
-
-    return sortedRepos.map(el => 
-      <Card key={el.id}>
-        <Card.Content>
-          <Card.Header>{el.name}</Card.Header>
-          <Card.Meta>Updated at: {moment(el.updated_at).format('DD.MM.YYYY')}</Card.Meta>
-          <Card.Description>{el.description}</Card.Description>
-          <Divider />
-          <Grid columns='2'>
-            <Grid.Column>
-              {el.fork && <Icon name='fork' />}
-              {el.stargazers_count && <span><Icon name='star' aria-label='stargazers' /> {el.stargazers_count}</span>}
-            </Grid.Column>
-            <Grid.Column textAlign='right'>
-              {el.language}
-            </Grid.Column>
-          </Grid>
-        </Card.Content>
-      </Card>
-    )
+    return processedRepos.map(el =>
+      <RepoCard
+        key={el.id}
+        data={el}
+      />
+    );
   }
 
   render() {
@@ -59,11 +53,11 @@ class Repos extends React.Component {
           <Loader />
         </Dimmer>
         <Card.Group itemsPerRow='3'>
-          {this.renderCards(repos)}
+          {this.renderItems(repos)}
         </Card.Group>
       </>
     );
   }
-} 
+};
 
 export default connect(mapStateToProps, actions)(Repos);
