@@ -1,4 +1,4 @@
-import moment, { lang } from 'moment';
+import moment from 'moment';
 
 const filterFunctions = {
   hasOpenIssues: (repo, value) => {

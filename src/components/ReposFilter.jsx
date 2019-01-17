@@ -12,7 +12,7 @@ import actions from '../actions';
 import getLanguages from '../utlis/getLanguages';
 
 const mapStateToProps = state => ({
-  repos: state.repos,
+  repos: state.repos.items,
   filter: state.filter,
 });
 

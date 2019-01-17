@@ -54,11 +54,15 @@ const userInfo = (state = {}, action) => {
   }
 };
 
-const repos = (state = [], action) => {
+const reposInit = {
+  items: [],
+  pagination: {},
+}
+const repos = (state = reposInit, action) => {
   switch (action.type) {
     case actions.REPOS_GET_SUCCESS:
-      const { payload: { data } } = action;
-      return data;
+      const { payload: { items, pagination } } = action;
+      return { items, pagination };
     default:
       return state
   }

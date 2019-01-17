@@ -31,7 +31,7 @@ class UserInfo extends React.Component {
           href={userInfo.html_url}
           target='_blank'
         >
-          View on github
+          Github page
         </a>
         <Divider />
         <List>

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import parseLinkHeader from 'parse-link-header';
 import api from '../api';
 
 export const REPOS_GET_REQUEST = 'REPOS_GET_REQUEST';
@@ -7,10 +8,11 @@ export const getReposRequest = () => ({
 });
 
 export const REPOS_GET_SUCCESS = 'REPOS_GET_SUCCESS';
-export const getReposSuccess = data => ({
+export const getReposSuccess = (items, pagination) => ({
   type: REPOS_GET_SUCCESS,
   payload: {
-    data,
+    items,
+    pagination,
   },
 });
 
@@ -32,10 +34,12 @@ export const getRepos = (username) => (dispatch) => {
     .get(api.getRepos(username), { headers })
     .then(
       (res) => {
-        const { data } = res;
-        console.log('RESPONSE_FULL: ', res);
-        console.log('RESPONSE_REPOS: ', data);
-        dispatch(getReposSuccess(data));
+        const { data, headers: { link } } = res;
+        const pagination = parseLinkHeader(link);
+        // console.log('LINK: ', pagination);
+        // console.log('RESPONSE_FULL: ', res);
+        // console.log('RESPONSE_REPOS: ', data);
+        dispatch(getReposSuccess(data, pagination));
       },
       (err) => {
         dispatch(getReposFailure(err));

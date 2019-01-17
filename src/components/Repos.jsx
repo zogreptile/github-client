@@ -15,7 +15,7 @@ import sortRepos from '../utlis/sortRepos';
 
 const mapStateToProps = state => ({
   isDataFetching: state.isDataFetching,
-  repos: state.repos,
+  repos: state.repos.items,
   repoInfo: state.repoInfo,
   filter: state.filter,
   sort: state.sort,
