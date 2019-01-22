@@ -30,11 +30,9 @@ export const getUserinfo = query => (dispatch) => {
     .then(
       (res) => {
         const { data } = res;
-        console.log('RESPONSE_INFO: ', data);
         dispatch(getUserinfoSuccess(data));
       },
       (err) => {
-        console.log(err);
         dispatch(getUserinfoFailure(err));
       }
     );

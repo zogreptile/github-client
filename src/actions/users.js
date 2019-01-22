@@ -30,12 +30,9 @@ export const getUsers = query => (dispatch) => {
     .then(
       (res) => {
         const { data } = res;
-        console.log('USERS_RESPONSE: ', res);
-        console.log('GET_USERS: ', data);
         dispatch(getUsersSuccess(data));
       },
       (err) => {
-        console.log(err);
         dispatch(getUsersFailure(err));
       }
     );

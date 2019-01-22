@@ -6,10 +6,15 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import UserInfo from '../components/UserInfo';
 import Repos from '../components/Repos';
+import LoadMoreBtn from '../components/LoadMoreBtn';
 import RepoModal from '../components/RepoModal';
 import ReposFilter from '../components/ReposFilter';
 import ReposSort from '../components/ReposSort';
 import actions from '../actions';
+
+const mapStateToProps = state => ({
+  nextPageUrl: state.repos.pagination.next.url,
+})
 class User extends React.Component {
   componentDidMount() {
     const { match, getUserinfo, getRepos } = this.props;
@@ -19,6 +24,8 @@ class User extends React.Component {
   }
 
   render() {
+    const { nextPageUrl } = this.props;
+
     return (
       <Grid>
         <Grid.Column width={4}>
@@ -28,6 +35,9 @@ class User extends React.Component {
         </Grid.Column>
         <Grid.Column width={12}>
           <Repos />
+          <LoadMoreBtn
+            url={nextPageUrl}
+          />
         </Grid.Column>
         <RepoModal />
       </Grid>
@@ -35,4 +45,4 @@ class User extends React.Component {
   }
 } 
 
-export default withRouter(connect(null, actions)(User));
+export default withRouter(connect(mapStateToProps, actions)(User));

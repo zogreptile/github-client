@@ -35,10 +35,8 @@ export const getRepos = (username) => (dispatch) => {
     .then(
       (res) => {
         const { data, headers: { link } } = res;
-        const pagination = parseLinkHeader(link);
-        // console.log('LINK: ', pagination);
-        // console.log('RESPONSE_FULL: ', res);
-        // console.log('RESPONSE_REPOS: ', data);
+        const pagination = parseLinkHeader(link) || { next: { url: '' } };
+
         dispatch(getReposSuccess(data, pagination));
       },
       (err) => {

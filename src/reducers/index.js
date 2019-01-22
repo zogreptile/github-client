@@ -56,13 +56,23 @@ const userInfo = (state = {}, action) => {
 
 const reposInit = {
   items: [],
-  pagination: {},
+  pagination: {
+    next: {
+      url: '',
+    },
+  },
 }
 const repos = (state = reposInit, action) => {
   switch (action.type) {
     case actions.REPOS_GET_SUCCESS:
+    case actions.LOAD_MORE_SUCCESS:
       const { payload: { items, pagination } } = action;
-      return { items, pagination };
+      return {
+        items: [...state.items, ...items],
+        pagination,
+      };
+    case actions.REPOS_GET_REQUEST:
+      return { ...reposInit };
     default:
       return state
   }

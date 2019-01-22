@@ -39,11 +39,10 @@ export const getRepoInfo = (username, reponame) => (dispatch) => {
         languages: languages.data,
         pullRequests: pullRequests.data,
       };
-      console.log('REPO_ALL_STUFF: ', result);
+
       dispatch(getRepoInfoSuccess(result));
     }))
     .catch((err) => {
-      console.log(err);
       dispatch(getRepoInfoFailure(err));
     });
 };
