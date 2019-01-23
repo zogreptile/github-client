@@ -10,7 +10,7 @@ import {
 import { Link } from 'react-router-dom';
 
 const mapStateToProps = state => ({
-  users: state.users,
+  users: state.users.items,
   isDataFetching: state.isDataFetching,
 });
 

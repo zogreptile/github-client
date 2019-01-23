@@ -1,12 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Button } from 'semantic-ui-react';
-import actions from '../actions';
-
 class LoadMoreBtn extends React.Component {
   handleClick = () => {
-    const { url, loadMore } = this.props;
-    loadMore(url);
+    const { url, action } = this.props;
+    action(url);
   }
 
   render() {
@@ -24,4 +21,4 @@ class LoadMoreBtn extends React.Component {
   }
 }
 
-export default connect(null, actions)(LoadMoreBtn);
+export default LoadMoreBtn;

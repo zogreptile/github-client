@@ -1,11 +1,25 @@
 import { combineReducers } from 'redux';
 import actions from '../actions';
 
-const users = (state = [], action) => {
+const usersInit = {
+  items: [],
+  pagination: {
+    next: {
+      url: '',
+    },
+  },
+};
+const users = (state = usersInit, action) => {
   switch (action.type) {
+    case actions.USERS_GET_REQUEST:
+      return { ...usersInit };
     case actions.USERS_GET_SUCCESS:
-      const { payload: { data: { items } } } = action;
-      return [...items];
+    case actions.LOAD_MORE_USERS_SUCCESS:
+      const { payload: { items, pagination } } = action;
+      return {
+        items: [...state.items, ...items],
+        pagination,
+      };
     default:
       return state
   }
@@ -65,7 +79,7 @@ const reposInit = {
 const repos = (state = reposInit, action) => {
   switch (action.type) {
     case actions.REPOS_GET_SUCCESS:
-    case actions.LOAD_MORE_SUCCESS:
+    case actions.LOAD_MORE_REPOS_SUCCESS:
       const { payload: { items, pagination } } = action;
       return {
         items: [...state.items, ...items],

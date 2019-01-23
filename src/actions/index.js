@@ -6,7 +6,8 @@ import * as repoInfo from './repoInfo';
 import * as repoModal from './repoModal';
 import * as filter from './filter';
 import * as sort from './sort';
-import * as loadMore from './loadMore';
+import * as loadMoreRepos from './loadMoreRepos';
+import * as loadMoreUsers from './loadMoreUsers';
 
 export default {
   ...query,
@@ -17,5 +18,6 @@ export default {
   ...repoModal,
   ...filter,
   ...sort,
-  ...loadMore,
+  ...loadMoreRepos,
+  ...loadMoreUsers,
 };

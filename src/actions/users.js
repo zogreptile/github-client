@@ -1,4 +1,5 @@
 import axios from 'axios';
+import parseLinkHeader from 'parse-link-header';
 import api from '../api';
 
 export const USERS_GET_REQUEST = 'USERS_GET_REQUEST';
@@ -7,10 +8,11 @@ export const getUsersRequest = () => ({
 });
 
 export const USERS_GET_SUCCESS = 'USERS_GET_SUCCESS';
-export const getUsersSuccess = data => ({
+export const getUsersSuccess = (items, pagination) => ({
   type: USERS_GET_SUCCESS,
   payload: {
-    data,
+    items,
+    pagination,
   },
 });
 
@@ -29,8 +31,13 @@ export const getUsers = query => (dispatch) => {
     .get(api.getUsers(query))
     .then(
       (res) => {
-        const { data } = res;
-        dispatch(getUsersSuccess(data));
+        const { data: { items }, headers: { link } } = res;
+        const parsedLinkHeader = parseLinkHeader(link);
+        const pagination = parsedLinkHeader && parsedLinkHeader.next.url ?
+          parsedLinkHeader :
+          { next: { url: '' } };
+
+        dispatch(getUsersSuccess(items, pagination));
       },
       (err) => {
         dispatch(getUsersFailure(err));

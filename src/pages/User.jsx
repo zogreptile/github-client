@@ -24,7 +24,7 @@ class User extends React.Component {
   }
 
   render() {
-    const { nextPageUrl } = this.props;
+    const { nextPageUrl, loadMoreRepos } = this.props;
 
     return (
       <Grid>
@@ -37,6 +37,7 @@ class User extends React.Component {
           <Repos />
           <LoadMoreBtn
             url={nextPageUrl}
+            action={loadMoreRepos}
           />
         </Grid.Column>
         <RepoModal />
