@@ -15,14 +15,18 @@ const mapStateToProps = state => ({
 });
 
 const UserCard = data => (
-  <Link to={`/${data.login}`}>
-    <Card>
-      <Image src={data.avatar_url} />
-      <Card.Content>
-        <Card.Header>{data.login}</Card.Header>
-      </Card.Content>
-    </Card>
-  </Link>
+  <Card as={Link} to={`/${data.login}`}>
+    <Image
+      className='margin-a'
+      src={data.avatar_url}
+    />
+    <Card.Content className='grow-0'>
+      <Card.Header
+        className='text-ellipsis'
+        content={data.login}
+      />
+    </Card.Content>
+  </Card>
 );
 
 const Users = ({ users, isDataFetching }) => {
@@ -41,7 +45,7 @@ const Users = ({ users, isDataFetching }) => {
       </Dimmer>
       <Grid doubling columns={5} style={topMargin}>
         {users.map(el => (
-          <Grid.Column key={el.id}>
+          <Grid.Column className='flex' key={el.id}>
             {UserCard(el)}
           </Grid.Column>
         ))}

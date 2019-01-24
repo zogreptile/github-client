@@ -22,11 +22,17 @@ class RepoCard extends React.Component {
     return (
       <Card onClick={this.handleClick}>
         <Card.Content>
-          <Card.Header>{data.name}</Card.Header>
+          <Card.Header
+            className='break-word'
+            content={data.name}
+          />
           <Card.Meta>Updated at: {updateDate}</Card.Meta>
-          <Card.Description>{data.description}</Card.Description>
+          <Card.Description
+            className='break-word'
+            content={data.description}
+          />
         </Card.Content>
-        <Card.Content style={{flexGrow: '0'}}>
+        <Card.Content className='grow-0'>
           <Grid columns='2'>
             <Grid.Column>
               {data.fork && <Icon name='fork' />}

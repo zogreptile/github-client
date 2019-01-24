@@ -1,3 +1,25 @@
 .load-more-btn {
   margin: 2rem 0 1rem !important;
 }
+
+.flex {
+  display: flex !important;
+}
+
+.margin-a {
+  margin: auto !important;
+}
+
+.grow-0 {
+  flex-grow: 0 !important;
+}
+
+.text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.break-word {
+  word-break: break-word;
+}
