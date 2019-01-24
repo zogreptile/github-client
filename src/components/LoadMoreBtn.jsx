@@ -11,6 +11,7 @@ class LoadMoreBtn extends React.Component {
 
     return url ?
       <Button
+        className='load-more-btn'
         fluid
         color='blue'
         onClick={this.handleClick}
