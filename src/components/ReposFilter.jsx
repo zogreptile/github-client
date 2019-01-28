@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import {
   Button,
   Form,
-  Checkbox,
-  Radio,
   Segment,
 } from 'semantic-ui-react';
 import { DateInput } from 'semantic-ui-calendar-react';
@@ -58,22 +56,18 @@ class ReposFilter extends React.Component {
 
     return (
       <Segment>
-        <h2>Filter</h2>
+        <h2>Filters</h2>
         <Form>
-          <Form.Field>
-            <Checkbox
-              checked={filter.hasOpenIssues}
-              label='Has open issues'
-              onChange={this.handleIssuesFilter}
-            />
-          </Form.Field>
-          <Form.Field>
-            <Checkbox
-              checked={filter.hasTopics}
-              label='Has topics'
-              onChange={this.handleTopicsFilter}
-            />
-          </Form.Field>
+          <Form.Checkbox
+            checked={filter.hasOpenIssues}
+            label='Has open issues'
+            onChange={this.handleIssuesFilter}
+          />
+          <Form.Checkbox
+            checked={filter.hasTopics}
+            label='Has topics'
+            onChange={this.handleTopicsFilter}
+          />
           <Form.Field>
             <label>Starred >= X times</label>
             <input
@@ -95,35 +89,28 @@ class ReposFilter extends React.Component {
           {/* TYPES OF REPOS */}
           <Form.Field>
             <label>Type</label>
-            <Form.Field>
-              <Radio
-                label='All'
-                name='typeFilter'
-                value='all'
-                checked={filter.type === 'all'}
-                onChange={this.handleTypeChange}
-              />
-            </Form.Field>
-            <Form.Field>
-              <Radio
-                label='Forks'
-                name='typeFilter'
-                value='forks'
-                checked={filter.type === 'forks'}
-                onChange={this.handleTypeChange}
-              />
-            </Form.Field>
-            <Form.Field>
-              <Radio
-                label='Sources'
-                name='typeFilter'
-                value='sources'
-                checked={filter.type === 'sources'}
-                onChange={this.handleTypeChange}
-              />
-            </Form.Field>
+            <Form.Radio
+              label='All'
+              name='typeFilter'
+              value='all'
+              checked={filter.type === 'all'}
+              onChange={this.handleTypeChange}
+            />
+            <Form.Radio
+              label='Forks'
+              name='typeFilter'
+              value='forks'
+              checked={filter.type === 'forks'}
+              onChange={this.handleTypeChange}
+            />
+            <Form.Radio
+              label='Sources'
+              name='typeFilter'
+              value='sources'
+              checked={filter.type === 'sources'}
+              onChange={this.handleTypeChange}
+            />
           </Form.Field>
-          <Form.Field>
           <Form.Dropdown
             fluid
             selection
@@ -133,10 +120,10 @@ class ReposFilter extends React.Component {
             placeholder='Language'
             onChange={this.handleLanguageFilter}
           />
-          </Form.Field>
           <Button
             content='Reset filters'
             fluid={true}
+            color='red'
             onClick={this.handleFilterReset}
           />
         </Form>

@@ -2,14 +2,14 @@ import moment from 'moment';
 
 const filterFunctions = {
   hasOpenIssues: (repo, value) => {
-    if (value === true) {
-      return repo.open_issues_count ? true : false;
+    if (value) {
+      return repo.open_issues_count;
     }
     return true;
   },
   hasTopics: (repo, value) => {
-    if (value === true) {
-      return repo.topics.length ? true : false;
+    if (value) {
+      return repo.topics.length;
     }
     return true;
   },
@@ -22,21 +22,24 @@ const filterFunctions = {
     const userDate = moment(date, 'DD-MM-YYYY');
     const diff = reposDate.diff(userDate, 'days');
 
-    return (diff >= 0) ? true : false;
+    return diff >= 0;
   },
   type: (repo, type) => {
-    if (type === 'forks') {
-      return repo.fork ? true : false;
-    } else if (type === 'sources') {
-      return !repo.fork ? true : false;
+    switch (type) {
+      case 'forks':
+        return repo.fork;
+      case 'sources':
+        return !repo.fork;
+      case 'all':
+      default:
+        return true;
     }
-    return true;
   },
   language: (repo, language) => {
     if (language === 'all') {
       return true;
     }
-    return repo.language === language ? true : false;
+    return repo.language === language;
   }
 };
 
@@ -47,7 +50,7 @@ const filterRepos = (repos, filters) => {
     let filtered = true;
     filterNames.forEach((filterName) => {
       const filterFunc = filterFunctions[filterName];
-      if (filterFunc !== undefined) {
+      if (filterFunc) {
         filtered = filtered && filterFunc(repo, filters[filterName]);
       };
     });

@@ -1,13 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Menu } from 'semantic-ui-react';
+import {
+  Container,
+  Menu,
+  Icon,
+} from 'semantic-ui-react';
 
 const Layout = (props) => {
   return (
     <Container>
       <Menu pointing secondary>
         <Menu.Item name='home'>
-          <Link to='/'>Home</Link>
+          <Link to='/'>
+            <Icon name='home' /> Home
+          </Link>
         </Menu.Item>
       </Menu>
       {props.children}

@@ -28,12 +28,12 @@ class User extends React.Component {
 
     return (
       <Grid>
-        <Grid.Column width={4}>
+        <Grid.Column mobile={16} computer={4}>
           <UserInfo />
           <ReposFilter />
           <ReposSort />
         </Grid.Column>
-        <Grid.Column width={12}>
+        <Grid.Column mobile={16} computer={12}>
           <Repos />
           <LoadMoreBtn
             url={nextPageUrl}

@@ -43,7 +43,7 @@ class ReposSort extends React.Component {
       <Segment>
         <h2>Sorting</h2>
         <Form>
-          <Form.Group inline>
+          <Form.Field>
             <label>Direction</label>
             <Form.Radio
               label='Desc'
@@ -57,7 +57,7 @@ class ReposSort extends React.Component {
               checked={sort.direction === 'asc'}
               onChange={this.handleSortDirection}
             />
-          </Form.Group>
+          </Form.Field>
           <Form.Dropdown
             fluid
             selection
@@ -70,6 +70,7 @@ class ReposSort extends React.Component {
           <Button
             content='Reset sorting'
             fluid={true}
+            color='red'
             onClick={this.handleSortReset}
           />
         </Form>

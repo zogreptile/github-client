@@ -52,7 +52,7 @@ class Repos extends React.Component {
         <Dimmer active={isDataFetching} inverted>
           <Loader />
         </Dimmer>
-        <Card.Group itemsPerRow='3'>
+        <Card.Group itemsPerRow='3' doubling>
           {this.renderItems(repos)}
         </Card.Group>
       </>
