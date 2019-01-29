@@ -4,13 +4,6 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-  mode: 'development',
-  devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './dist',
-    hot: true,
-    historyApiFallback: true,
-  },
   entry: {
     app: './src/index.js',
   },
@@ -45,4 +38,4 @@ module.exports = {
       }
     ],
   },
-}
+};
