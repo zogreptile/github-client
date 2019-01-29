@@ -5,8 +5,6 @@ import {
   Form,
   Input,
   Button,
-  Segment,
-  Container,
 } from 'semantic-ui-react';
 import actions from '../actions';
 

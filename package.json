@@ -4,7 +4,7 @@
   "description": "Github client app",
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --progress --config webpack.prod.js"
   },
   "author": "More Mone",
   "devDependencies": {
@@ -24,8 +24,7 @@
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.14",
-    "webpack-merge": "^4.2.1",
-    "webpack-visualizer-plugin": "^0.1.11"
+    "webpack-merge": "^4.2.1"
   },
   "dependencies": {
     "axios": "^0.18.0",

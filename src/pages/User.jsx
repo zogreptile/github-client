@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Grid,
-} from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import UserInfo from '../components/UserInfo';

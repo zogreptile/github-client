@@ -1,11 +1,8 @@
 import React from 'react';
 import {
-  Grid,
-  Divider,
   Loader,
   Dimmer,
   Card,
-  Icon,
 } from 'semantic-ui-react';
 import { connect } from "react-redux";
 import RepoCard from '../components/RepoCard';
