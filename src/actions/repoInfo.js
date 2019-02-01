@@ -2,11 +2,13 @@ import axios from 'axios';
 import api from '../api';
 
 export const REPOINFO_GET_REQUEST = 'REPOINFO_GET_REQUEST';
+export const REPOINFO_GET_SUCCESS = 'REPOINFO_GET_SUCCESS';
+export const REPOINFO_GET_FAILURE = 'REPOINFO_GET_FAILURE';
+
 export const getRepoInfoRequest = () => ({
   type: REPOINFO_GET_REQUEST,
 });
 
-export const REPOINFO_GET_SUCCESS = 'REPOINFO_GET_SUCCESS';
 export const getRepoInfoSuccess = data => ({
   type: REPOINFO_GET_SUCCESS,
   payload: {
@@ -14,7 +16,6 @@ export const getRepoInfoSuccess = data => ({
   },
 });
 
-export const REPOINFO_GET_FAILURE = 'REPOINFO_GET_FAILURE';
 export const getRepoInfoFailure = message => ({
   type: REPOINFO_GET_FAILURE,
   payload: {

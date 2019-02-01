@@ -3,11 +3,13 @@ import parseLinkHeader from 'parse-link-header';
 import api from '../api';
 
 export const USERS_GET_REQUEST = 'USERS_GET_REQUEST';
+export const USERS_GET_SUCCESS = 'USERS_GET_SUCCESS';
+export const USERS_GET_FAILURE = 'USERS_GET_FAILURE';
+
 export const getUsersRequest = () => ({
   type: USERS_GET_REQUEST,
 });
 
-export const USERS_GET_SUCCESS = 'USERS_GET_SUCCESS';
 export const getUsersSuccess = (items, pagination) => ({
   type: USERS_GET_SUCCESS,
   payload: {
@@ -16,7 +18,6 @@ export const getUsersSuccess = (items, pagination) => ({
   },
 });
 
-export const USERS_GET_FAILURE = 'USERS_GET_FAILURE';
 export const getUsersFailure = message => ({
   type: USERS_GET_FAILURE,
   payload: {

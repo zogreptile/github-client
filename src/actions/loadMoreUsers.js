@@ -2,11 +2,13 @@ import axios from 'axios';
 import parseLinkHeader from 'parse-link-header';
 
 export const LOAD_MORE_USERS_REQUEST = 'LOAD_MORE_USERS_REQUEST';
+export const LOAD_MORE_USERS_FAILURE = 'LOAD_MORE_USERS_FAILURE';
+export const LOAD_MORE_USERS_SUCCESS = 'LOAD_MORE_USERS_SUCCESS';
+
 export const loadMoreUsersRequest = () => ({
   type: LOAD_MORE_USERS_REQUEST,
 });
 
-export const LOAD_MORE_USERS_FAILURE = 'LOAD_MORE_USERS_FAILURE';
 export const loadMoreUsersFailure = () => ({
   type: LOAD_MORE_USERS_FAILURE,
   payload: {
@@ -14,7 +16,6 @@ export const loadMoreUsersFailure = () => ({
   },
 });
 
-export const LOAD_MORE_USERS_SUCCESS = 'LOAD_MORE_USERS_SUCCESS';
 export const loadMoreUsersSuccess = (items, pagination) => ({
   type: LOAD_MORE_USERS_SUCCESS,
   payload: {

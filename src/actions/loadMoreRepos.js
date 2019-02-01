@@ -2,11 +2,13 @@ import axios from 'axios';
 import parseLinkHeader from 'parse-link-header';
 
 export const LOAD_MORE_REPOS_REQUEST = 'LOAD_MORE_REPOS_REQUEST';
+export const LOAD_MORE_REPOS_FAILURE = 'LOAD_MORE_REPOS_FAILURE';
+export const LOAD_MORE_REPOS_SUCCESS = 'LOAD_MORE_REPOS_SUCCESS';
+
 export const loadMoreReposRequest = () => ({
   type: LOAD_MORE_REPOS_REQUEST,
 });
 
-export const LOAD_MORE_REPOS_FAILURE = 'LOAD_MORE_REPOS_FAILURE';
 export const loadMoreReposFailure = () => ({
   type: LOAD_MORE_REPOS_FAILURE,
   payload: {
@@ -14,7 +16,6 @@ export const loadMoreReposFailure = () => ({
   },
 });
 
-export const LOAD_MORE_REPOS_SUCCESS = 'LOAD_MORE_REPOS_SUCCESS';
 export const loadMoreReposSuccess = (items, pagination) => ({
   type: LOAD_MORE_REPOS_SUCCESS,
   payload: {
