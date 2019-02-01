@@ -8,11 +8,19 @@ import LoadMoreBtn from '../components/LoadMoreBtn';
 import RepoModal from '../components/RepoModal';
 import ReposFilter from '../components/ReposFilter';
 import ReposSort from '../components/ReposSort';
-import actions from '../actions';
+import { getUserinfo } from '../actions/userInfo';
+import { getRepos } from '../actions/repos';
+import { loadMoreRepos } from '../actions/loadMoreRepos';
 
 const mapStateToProps = state => ({
   nextPageUrl: state.repos.pagination.next.url,
-})
+});
+
+const mapDispatchToProps = {
+  getUserinfo,
+  getRepos,
+  loadMoreRepos,
+};
 class User extends React.Component {
   componentDidMount() {
     const { match, getUserinfo, getRepos } = this.props;
@@ -44,4 +52,4 @@ class User extends React.Component {
   }
 } 
 
-export default withRouter(connect(mapStateToProps, actions)(User));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(User));

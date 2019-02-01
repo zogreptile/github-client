@@ -6,11 +6,17 @@ import {
   Input,
   Button,
 } from 'semantic-ui-react';
-import actions from '../actions';
+import { updateQuery } from '../actions/query';
+import { getUsers } from '../actions/users';
 
 const mapStateToProps = state => ({
   query: state.query,
 });
+
+const mapDispatchToProps = {
+  updateQuery,
+  getUsers,
+};
 class SearchForm extends React.Component {
   handleChange = ({ target: { value } }) => {
     const { updateQuery } = this.props;
@@ -42,4 +48,4 @@ class SearchForm extends React.Component {
   }
 };
 
-export default connect(mapStateToProps, actions)(SearchForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);

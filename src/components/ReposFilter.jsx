@@ -6,13 +6,31 @@ import {
   Segment,
 } from 'semantic-ui-react';
 import { DateInput } from 'semantic-ui-calendar-react';
-import actions from '../actions';
+import {
+  issuesFilter,
+  topicsFilter,
+  starredFilter,
+  lastUpdatedFilter,
+  typeFilter,
+  languageFilter,
+  resetFilter,
+} from '../actions/filter';
 import getLanguages from '../utlis/getLanguages';
 
 const mapStateToProps = state => ({
   repos: state.repos.items,
   filter: state.filter,
 });
+
+const mapDispatchToProps = {
+  issuesFilter,
+  topicsFilter,
+  starredFilter,
+  lastUpdatedFilter,
+  typeFilter,
+  languageFilter,
+  resetFilter,
+};
 
 class ReposFilter extends React.Component {
   handleIssuesFilter = (e, data) => {
@@ -132,4 +150,4 @@ class ReposFilter extends React.Component {
   }
 } 
 
-export default connect(mapStateToProps, actions)(ReposFilter);
+export default connect(mapStateToProps, mapDispatchToProps)(ReposFilter);

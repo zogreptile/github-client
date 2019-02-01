@@ -5,12 +5,21 @@ import {
   Form,
   Segment,
 } from 'semantic-ui-react';
-import actions from '../actions';
+import {
+  setSortType,
+  setSortDirection,
+  resetSort,
+} from '../actions/sort';
 
 const mapStateToProps = state => ({
-  repos: state.repos,
   sort: state.sort,
 });
+
+const mapDispatchToProps = {
+  setSortType,
+  setSortDirection,
+  resetSort,
+};
 
 const sortOptions = [
   { value: 'none', text: 'None' },
@@ -79,4 +88,4 @@ class ReposSort extends React.Component {
   }
 } 
 
-export default connect(mapStateToProps, actions)(ReposSort);
+export default connect(mapStateToProps, mapDispatchToProps)(ReposSort);

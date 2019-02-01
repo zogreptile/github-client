@@ -7,7 +7,11 @@ import {
 import { connect } from "react-redux";
 import moment from 'moment';
 import LanguageIcon from '../components/LanguageIcon';
-import actions from '../actions';
+import { getRepoInfo } from '../actions/repoInfo';
+
+const mapDispatchToProps = {
+  getRepoInfo,
+};
 
 class RepoCard extends React.Component {
   handleClick = () => {
@@ -57,4 +61,4 @@ class RepoCard extends React.Component {
   }
 };
 
-export default connect(null, actions)(RepoCard);
+export default connect(null, mapDispatchToProps)(RepoCard);

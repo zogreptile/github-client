@@ -9,12 +9,20 @@ import {
 } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import LanguageIcon from '../components/LanguageIcon';
-import actions from '../actions';
+import {
+  openRepoModal,
+  closeRepoModal,
+} from '../actions/repoModal';
 
 const mapStateToProps = state => ({
   repoInfo: state.repoInfo,
   repoModal: state.repoModal,
 });
+
+const mapDispatchToProps = {
+  openRepoModal,
+  closeRepoModal,
+};
 
 const renderContributors = data => {
   if (!data.length) {
@@ -142,4 +150,4 @@ class RepoModal extends React.Component {
   }
 };
 
-export default connect(mapStateToProps, actions)(RepoModal);
+export default connect(mapStateToProps, mapDispatchToProps)(RepoModal);

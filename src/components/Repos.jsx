@@ -6,17 +6,20 @@ import {
 } from 'semantic-ui-react';
 import { connect } from "react-redux";
 import RepoCard from '../components/RepoCard';
-import actions from '../actions';
+import { getRepoInfo } from '../actions/repoInfo';
 import filterRepos from '../utlis/filterRepos';
 import sortRepos from '../utlis/sortRepos';
 
 const mapStateToProps = state => ({
   isDataFetching: state.isDataFetching,
   repos: state.repos.items,
-  repoInfo: state.repoInfo,
   filter: state.filter,
   sort: state.sort,
 });
+
+const mapDisptachToProps = {
+  getRepoInfo,
+};
 class Repos extends React.Component {
   handleClick = (username, reponame) => () => {
     const { getRepoInfo } = this.props;
@@ -57,4 +60,4 @@ class Repos extends React.Component {
   }
 };
 
-export default connect(mapStateToProps, actions)(Repos);
+export default connect(mapStateToProps, mapDisptachToProps)(Repos);
