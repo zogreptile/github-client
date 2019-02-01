@@ -8,26 +8,12 @@ import {
   Dimmer,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import UserCard from './UserCard';
 
 const mapStateToProps = state => ({
   users: state.users.items,
   isDataFetching: state.isDataFetching,
 });
-
-const UserCard = data => (
-  <Card as={Link} to={`/${data.login}`}>
-    <Image
-      className='margin-a'
-      src={data.avatar_url}
-    />
-    <Card.Content className='grow-0'>
-      <Card.Header
-        className='text-ellipsis'
-        content={data.login}
-      />
-    </Card.Content>
-  </Card>
-);
 
 const Users = ({ users, isDataFetching }) => {
   if (!users.length) {
@@ -46,7 +32,11 @@ const Users = ({ users, isDataFetching }) => {
       <Grid doubling columns={5} style={topMargin}>
         {users.map(el => (
           <Grid.Column className='flex' key={el.id}>
-            {UserCard(el)}
+            <UserCard
+              data={el}
+              as={Link}
+              to={`/${el.login}`}
+            />
           </Grid.Column>
         ))}
       </Grid>

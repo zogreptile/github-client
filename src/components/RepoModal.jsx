@@ -118,7 +118,7 @@ class RepoModal extends React.Component {
         open={repoModal.isOpen}
         onClose={this.handleClose}
       >
-        <Modal.Content style={{backgroundColor: '#f7f7f7'}}>
+        <Modal.Content className='repo-modal__header'>
           <Header as='h1'>
             <a href={repoInfo.general.html_url} target='_blank'>{repoInfo.general.name}</a>
             {

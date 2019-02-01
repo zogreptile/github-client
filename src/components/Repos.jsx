@@ -26,8 +26,8 @@ class Repos extends React.Component {
     getRepoInfo(username, reponame);
   }
 
-  renderItems = (repos) => {
-    const { filter, sort } = this.props;
+  renderItems = () => {
+    const { filter, sort, repos } = this.props;
     const processedRepos = sortRepos(
       filterRepos(repos, filter),
       sort,
@@ -46,14 +46,14 @@ class Repos extends React.Component {
   }
 
   render() {
-    const { isDataFetching, repos } = this.props;
+    const { isDataFetching } = this.props;
     return (
       <>
         <Dimmer active={isDataFetching} inverted>
           <Loader />
         </Dimmer>
         <Card.Group itemsPerRow='3' doubling>
-          {this.renderItems(repos)}
+          {this.renderItems()}
         </Card.Group>
       </>
     );
