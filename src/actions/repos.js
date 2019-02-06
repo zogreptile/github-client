@@ -25,23 +25,17 @@ export const getReposFailure = message => ({
   },
 });
 
-export const getRepos = (username) => (dispatch) => {
+export const getRepos = (username) => async (dispatch) => {
   dispatch(getReposRequest());
   const headers = {
     'Accept': 'application/vnd.github.mercy-preview+json',
   };
 
-  return axios
-    .get(api.getRepos(username), { headers })
-    .then(
-      (res) => {
-        const { data, headers: { link } } = res;
-        const pagination = parseLinkHeader(link) || { next: { url: '' } };
-
-        dispatch(getReposSuccess(data, pagination));
-      },
-      (err) => {
-        dispatch(getReposFailure(err));
-      }
-    );
+  try {
+    const { data, headers: { link } } = await axios.get(api.getRepos(username), { headers });
+    const pagination = parseLinkHeader(link) || { next: { url: '' } };
+    dispatch(getReposSuccess(data, pagination));
+  } catch (err) {
+    dispatch(getReposFailure(err));
+  };
 };

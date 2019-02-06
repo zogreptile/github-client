@@ -24,26 +24,20 @@ export const loadMoreReposSuccess = (items, pagination) => ({
   },
 });
 
-export const loadMoreRepos = url => (dispatch) => {
+export const loadMoreRepos = url => async (dispatch) => {
   dispatch(loadMoreReposRequest());
   const headers = {
     'Accept': 'application/vnd.github.mercy-preview+json',
   };
 
-  return axios
-    .get(url, { headers })
-    .then(
-      (res) => {
-        const { data, headers: { link } } = res;
-        const parsedLinkHeader = parseLinkHeader(link);
-        const pagination = parsedLinkHeader && parsedLinkHeader.next ?
-          parsedLinkHeader :
-          { next: { url: '' } };
-
-        dispatch(loadMoreReposSuccess(data, pagination));
-      },
-      (err) => {
-        dispatch(loadMoreReposFailure(err));
-      }
-    );
+  try {
+    const { data, headers: { link } } = await axios.get(url, { headers });
+    const parsedLinkHeader = parseLinkHeader(link);
+    const pagination = parsedLinkHeader && parsedLinkHeader.next ?
+      parsedLinkHeader :
+      { next: { url: '' } };
+    dispatch(loadMoreReposSuccess(data, pagination));
+  } catch (err) {
+    dispatch(loadMoreReposFailure(err));
+  };
 };

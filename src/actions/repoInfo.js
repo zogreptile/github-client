@@ -23,27 +23,24 @@ export const getRepoInfoFailure = message => ({
   },
 });
 
-export const getRepoInfo = (username, reponame) => (dispatch) => {
+export const getRepoInfo = (username, reponame) => async (dispatch) => {
   dispatch(getRepoInfoRequest());
 
-  return axios
-    .all([
+  try {
+    const result = await axios.all([
       axios.get(api.getRepoGeneralInfo(username, reponame)),
       axios.get(api.getRepoContributors(username, reponame)),
       axios.get(api.getRepoLanguages(username, reponame)),
       axios.get(api.getRepoPopularPullRequests(username, reponame)),
     ])
-    .then(axios.spread((generalInfo, contributors, languages, pullRequests) => {
-      const result = { 
-        general: generalInfo.data,
-        contributors: contributors.data,
-        languages: languages.data,
-        pullRequests: pullRequests.data,
-      };
-
-      dispatch(getRepoInfoSuccess(result));
-    }))
-    .catch((err) => {
-      dispatch(getRepoInfoFailure(err));
-    });
+    .then(axios.spread((generalInfo, contributors, languages, pullRequests) => ({ 
+      general: generalInfo.data,
+      contributors: contributors.data,
+      languages: languages.data,
+      pullRequests: pullRequests.data,
+    })));
+    dispatch(getRepoInfoSuccess(result));
+  } catch (err) {
+    dispatch(getRepoInfoFailure(err));
+  };
 };

@@ -23,18 +23,13 @@ export const getUserinfoFailure = message => ({
   },
 });
 
-export const getUserinfo = query => (dispatch) => {
+export const getUserinfo = query => async (dispatch) => {
   dispatch(getUserinfoRequest());
 
-  return axios
-    .get(api.getUserinfo(query))
-    .then(
-      (res) => {
-        const { data } = res;
-        dispatch(getUserinfoSuccess(data));
-      },
-      (err) => {
-        dispatch(getUserinfoFailure(err));
-      }
-    );
+  try {
+    const { data } = await axios.get(api.getUserinfo(query));
+    dispatch(getUserinfoSuccess(data));
+  } catch (err) {
+    dispatch(getUserinfoFailure(err));
+  };
 };

@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from "react-redux";
 import {
   Grid,
-  Card,
-  Image,
   Loader,
   Dimmer,
 } from 'semantic-ui-react';

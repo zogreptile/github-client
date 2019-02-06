@@ -25,23 +25,17 @@ export const getUsersFailure = message => ({
   },
 });
 
-export const getUsers = query => (dispatch) => {
+export const getUsers = query => async (dispatch) => {
   dispatch(getUsersRequest());
 
-  return axios
-    .get(api.getUsers(query))
-    .then(
-      (res) => {
-        const { data: { items }, headers: { link } } = res;
-        const parsedLinkHeader = parseLinkHeader(link);
-        const pagination = parsedLinkHeader && parsedLinkHeader.next.url ?
-          parsedLinkHeader :
-          { next: { url: '' } };
-
-        dispatch(getUsersSuccess(items, pagination));
-      },
-      (err) => {
-        dispatch(getUsersFailure(err));
-      }
-    );
+  try {
+    const { data: { items }, headers: { link } } = await axios.get(api.getUsers(query));
+    const parsedLinkHeader = parseLinkHeader(link);
+    const pagination = parsedLinkHeader && parsedLinkHeader.next.url ?
+      parsedLinkHeader :
+      { next: { url: '' } };
+    dispatch(getUsersSuccess(items, pagination));
+  } catch (err) {
+    dispatch(getUsersFailure(err));
+  };
 };
