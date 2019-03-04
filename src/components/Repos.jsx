@@ -5,6 +5,7 @@ import {
   Card,
 } from 'semantic-ui-react';
 import { connect } from "react-redux";
+import flow from "lodash.flow";
 import RepoCard from '../components/RepoCard';
 import { getRepoInfo } from '../actions/repoInfo';
 import filterRepos from '../utlis/filterRepos';
@@ -28,10 +29,11 @@ class Repos extends React.Component {
 
   renderItems = () => {
     const { filter, sort, repos } = this.props;
-    const processedRepos = sortRepos(
-      filterRepos(repos, filter),
-      sort,
-    );
+
+    const processedRepos = flow(
+      filterRepos(filter),
+      sortRepos(sort),
+    )(repos);
 
     if (!processedRepos.length) {
       return <h1>Nothing found</h1>

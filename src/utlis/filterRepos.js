@@ -43,7 +43,7 @@ const filterFunctions = {
   }
 };
 
-const filterRepos = (repos, filters) => {
+const filterRepos = filters => (repos) => {
   const filterNames = Object.keys(filters);
 
   return repos.reduce((acc, repo) => {

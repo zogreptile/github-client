@@ -50,7 +50,7 @@ const sortFunctions = {
   },
 };
 
-const sortRepos = (repos, { type, direction }) => {
+const sortRepos = ({ type, direction }) => (repos) => {
   const sortFunc = sortFunctions[type];
   return repos.sort((a, b) => sortFunc(a, b, direction));
 };
