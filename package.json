@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Github client app",
   "scripts": {
-    "start": "webpack-dev-server --open --config webpack.dev.js",
-    "build": "webpack --progress --config webpack.prod.js",
+    "start": "webpack-dev-server --open --config config/webpack.dev.js",
+    "build": "webpack --progress --config config/webpack.prod.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
