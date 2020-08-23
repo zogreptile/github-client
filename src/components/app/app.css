@@ -1,7 +1,3 @@
-.load-more-btn {
-  margin: 2rem 0 1rem !important;
-}
-
 .flex {
   display: flex !important;
 }
@@ -22,8 +18,4 @@
 
 .break-word {
   word-break: break-word;
-}
-
-.repo-modal__header {
-  background-color: #f7f7f7 !important;
 }
