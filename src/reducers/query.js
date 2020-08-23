@@ -1,5 +1,5 @@
-import { QUERY_UPDATE } from '../actions/query'
-import { USERS_GET_SUCCESS } from '../actions/users'
+import { QUERY_UPDATE } from 'src/actions/query'
+import { USERS_GET_SUCCESS } from 'src/actions/users'
 
 const query = (state = '', action) => {
   switch (action.type) {

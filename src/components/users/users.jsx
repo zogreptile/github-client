@@ -6,7 +6,7 @@ import {
   Dimmer,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import UserCard from './UserCard';
+import UserCard from 'src/components/user-card';
 
 const mapStateToProps = state => ({
   users: state.users.items,

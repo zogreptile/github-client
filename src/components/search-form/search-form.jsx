@@ -6,8 +6,8 @@ import {
   Input,
   Button,
 } from 'semantic-ui-react';
-import { updateQuery } from '../actions/query';
-import { getUsers } from '../actions/users';
+import { updateQuery } from 'src/actions/query';
+import { getUsers } from 'src/actions/users';
 
 const mapStateToProps = state => ({
   query: state.query,

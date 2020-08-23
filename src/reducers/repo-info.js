@@ -1,4 +1,4 @@
-import { REPOINFO_GET_SUCCESS } from '../actions/repoInfo';
+import { REPOINFO_GET_SUCCESS } from 'src/actions/repo-info';
 
 const repoInfo = (state = {}, action) => {
   switch (action.type) {

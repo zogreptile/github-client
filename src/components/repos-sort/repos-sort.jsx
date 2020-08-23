@@ -9,7 +9,7 @@ import {
   setSortType,
   setSortDirection,
   resetSort,
-} from '../actions/sort';
+} from 'src/actions/sort';
 
 const mapStateToProps = state => ({
   sort: state.sort,

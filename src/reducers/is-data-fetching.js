@@ -2,22 +2,22 @@ import {
   USERS_GET_REQUEST,
   USERS_GET_SUCCESS,
   USERS_GET_FAILURE,
-} from '../actions/users';
+} from 'src/actions/users';
 import {
   USERINFO_GET_REQUEST,
   USERINFO_GET_SUCCESS,
   USERINFO_GET_FAILURE,
-} from '../actions/userInfo';
+} from 'src/actions/user-info';
 import {
   REPOS_GET_REQUEST,
   REPOS_GET_SUCCESS,
   REPOS_GET_FAILURE,
-} from '../actions/repos';
+} from 'src/actions/repos';
 import {
   REPOINFO_GET_REQUEST,
   REPOINFO_GET_SUCCESS,
   REPOINFO_GET_FAILURE,
-} from '../actions/repoInfo';
+} from 'src/actions/repo-info';
 
 const isDataFetching = (state = false, action) => {
   switch (action.type) {

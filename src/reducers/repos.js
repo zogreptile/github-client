@@ -1,8 +1,8 @@
 import {
   REPOS_GET_SUCCESS,
   REPOS_GET_REQUEST,
-} from '../actions/repos';
-import { LOAD_MORE_REPOS_SUCCESS } from '../actions/loadMoreRepos';
+} from 'src/actions/repos';
+import { LOAD_MORE_REPOS_SUCCESS } from 'src/actions/load-more-repos';
 
 const reposInit = {
   items: [],

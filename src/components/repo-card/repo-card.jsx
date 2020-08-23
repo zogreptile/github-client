@@ -6,8 +6,8 @@ import {
 } from 'semantic-ui-react';
 import { connect } from "react-redux";
 import moment from 'moment';
-import LanguageIcon from '../components/LanguageIcon';
-import { getRepoInfo } from '../actions/repoInfo';
+import LanguageIcon from 'src/components/language-icon';
+import { getRepoInfo } from 'src/actions/repo-info';
 
 const mapDispatchToProps = {
   getRepoInfo,

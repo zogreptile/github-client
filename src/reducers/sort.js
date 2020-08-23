@@ -2,8 +2,8 @@ import {
   SORT_TYPE,
   SORT_DIRECTION,
   SORT_RESET,
-} from '../actions/sort';
-import { USERINFO_GET_SUCCESS } from '../actions/userInfo';
+} from 'src/actions/sort';
+import { USERINFO_GET_SUCCESS } from 'src/actions/user-info';
 
 const sortInit = {
   type: 'none',

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import api from '../api';
+import api from 'src/api';
 
 export const REPOINFO_GET_REQUEST = 'REPOINFO_GET_REQUEST';
 export const REPOINFO_GET_SUCCESS = 'REPOINFO_GET_SUCCESS';

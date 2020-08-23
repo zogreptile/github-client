@@ -6,10 +6,10 @@ import {
 } from 'semantic-ui-react';
 import { connect } from "react-redux";
 import flow from "lodash.flow";
-import RepoCard from '../components/RepoCard';
-import { getRepoInfo } from '../actions/repoInfo';
-import filterRepos from '../utlis/filterRepos';
-import sortRepos from '../utlis/sortRepos';
+import RepoCard from 'src/components/repo-card';
+import { getRepoInfo } from 'src/actions/repo-info';
+import filterRepos from 'src/utlis/filter-repos';
+import sortRepos from 'src/utlis/sort-repos';
 
 const mapStateToProps = state => ({
   isDataFetching: state.isDataFetching,

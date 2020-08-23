@@ -14,8 +14,8 @@ import {
   typeFilter,
   languageFilter,
   resetFilter,
-} from '../actions/filter';
-import getLanguages from '../utlis/getLanguages';
+} from 'src/actions/filter';
+import getLanguages from 'src/utlis/get-languages';
 
 const mapStateToProps = state => ({
   repos: state.repos.items,

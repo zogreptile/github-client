@@ -1,8 +1,8 @@
 import {
   REPO_MODAL_OPEN,
   REPO_MODAL_CLOSE,
-} from '../actions/repoModal';
-import { REPOINFO_GET_SUCCESS } from '../actions/repoInfo';
+} from 'src/actions/repo-modal';
+import { REPOINFO_GET_SUCCESS } from 'src/actions/repo-info';
 
 const repoModal = (state = { isOpen: false }, action) => {
   switch (action.type) {

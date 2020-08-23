@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import users from './users';
 import query from './query';
-import isDataFetching from './isDataFetching';
-import userInfo from './userInfo';
+import isDataFetching from './is-data-fetching';
+import userInfo from './user-info';
 import repos from './repos';
-import repoInfo from './repoInfo';
-import repoModal from './repoModal';
+import repoInfo from './repo-info';
+import repoModal from './repo-modal';
 import filter from './filter';
 import sort from './sort';
 

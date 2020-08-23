@@ -1,6 +1,6 @@
 import axios from 'axios';
 import parseLinkHeader from 'parse-link-header';
-import api from '../api';
+import api from 'src/api';
 
 export const REPOS_GET_REQUEST = 'REPOS_GET_REQUEST';
 export const REPOS_GET_SUCCESS = 'REPOS_GET_SUCCESS';

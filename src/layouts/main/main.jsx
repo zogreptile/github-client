@@ -6,7 +6,7 @@ import {
   Icon,
 } from 'semantic-ui-react';
 
-const Layout = (props) => {
+const Main = (props) => {
   return (
     <Container>
       <Menu pointing secondary>
@@ -21,4 +21,4 @@ const Layout = (props) => {
   );
 };
 
-export default Layout;
+export default Main;

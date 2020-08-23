@@ -2,15 +2,16 @@ import React from 'react';
 import { Grid } from 'semantic-ui-react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import UserInfo from '../components/UserInfo';
-import Repos from '../components/Repos';
-import LoadMoreBtn from '../components/LoadMoreBtn';
-import RepoModal from '../components/RepoModal';
-import ReposFilter from '../components/ReposFilter';
-import ReposSort from '../components/ReposSort';
-import { getUserinfo } from '../actions/userInfo';
-import { getRepos } from '../actions/repos';
-import { loadMoreRepos } from '../actions/loadMoreRepos';
+import UserInfo from 'src/components/user-info';
+import Repos from 'src/components/repos';
+import LoadMoreBtn from 'src/components/load-more-btn';
+import RepoModal from 'src/components/repo-modal';
+import ReposFilter from 'src/components/repos-filter';
+import ReposSort from 'src/components/repos-sort';
+
+import { getUserinfo } from 'src/actions/user-info';
+import { getRepos } from 'src/actions/repos';
+import { loadMoreRepos } from 'src/actions/load-more-repos';
 
 const mapStateToProps = state => ({
   nextPageUrl: state.repos.pagination.next.url,

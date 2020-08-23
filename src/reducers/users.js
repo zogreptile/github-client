@@ -1,8 +1,8 @@
 import {
   USERS_GET_REQUEST,
   USERS_GET_SUCCESS,
-} from '../actions/users';
-import { LOAD_MORE_USERS_SUCCESS } from '../actions/loadMoreUsers';
+} from 'src/actions/users';
+import { LOAD_MORE_USERS_SUCCESS } from 'src/actions/load-more-users';
 
 const usersInit = {
   items: [],

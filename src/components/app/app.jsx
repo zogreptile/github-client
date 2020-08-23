@@ -1,19 +1,18 @@
 import React from 'react';
 import { Provider } from "react-redux";
 import { HashRouter, Route } from 'react-router-dom';
-import Layout from '../components/Layout';
-import 'semantic-ui-css/semantic.min.css';
-import '../styles/app.css';
-import Index from '../pages/Index';
-import User from '../pages/User';
+import MainLayout from 'src/layouts/main';
+
+import Home from 'src/pages/home';
+import User from 'src/pages/user';
 
 const App = ({ store }) => (
   <Provider store={store}>
     <HashRouter >
-      <Layout>
-        <Route exact path='/' component={Index} />
+      <MainLayout>
+        <Route exact path='/' component={Home} />
         <Route path='/:username' component={User} />
-      </Layout>
+      </MainLayout>
     </HashRouter >
   </Provider>
 );

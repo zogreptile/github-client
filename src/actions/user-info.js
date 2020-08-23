@@ -1,5 +1,5 @@
 import axios from 'axios';
-import api from '../api';
+import api from 'src/api';
 
 export const USERINFO_GET_REQUEST = 'USERINFO_GET_REQUEST';
 export const USERINFO_GET_SUCCESS = 'USERINFO_GET_SUCCESS';

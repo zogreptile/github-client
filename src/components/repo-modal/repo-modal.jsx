@@ -8,11 +8,11 @@ import {
   Grid,
 } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import LanguageIcon from '../components/LanguageIcon';
+import LanguageIcon from 'src/components/language-icon';
 import {
   openRepoModal,
   closeRepoModal,
-} from '../actions/repoModal';
+} from 'src/actions/repo-modal';
 
 const mapStateToProps = state => ({
   repoInfo: state.repoInfo,

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import parseLinkHeader from 'parse-link-header';
-import api from '../api';
+import api from 'src/api';
 
 export const USERS_GET_REQUEST = 'USERS_GET_REQUEST';
 export const USERS_GET_SUCCESS = 'USERS_GET_SUCCESS';

@@ -1,4 +1,4 @@
-import { USERINFO_GET_SUCCESS } from '../actions/userInfo';
+import { USERINFO_GET_SUCCESS } from 'src/actions/user-info';
 
 const userInfo = (state = {}, action) => {
   switch (action.type) {

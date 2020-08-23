@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react';
+
 class LoadMoreBtn extends React.Component {
   handleClick = () => {
     const { url, action } = this.props;

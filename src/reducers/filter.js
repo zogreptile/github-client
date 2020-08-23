@@ -6,8 +6,8 @@ import {
   FILTER_TYPE,
   FILTER_LANGUAGE,
   FILTER_RESET,
-} from '../actions/filter';
-import { USERINFO_GET_SUCCESS } from '../actions/userInfo';
+} from 'src/actions/filter';
+import { USERINFO_GET_SUCCESS } from 'src/actions/user-info';
 
 const filterInit = {
   hasOpenIssues: false,
