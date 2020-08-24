@@ -1,4 +1,3 @@
-import React from 'react';
 import { Icon } from 'semantic-ui-react';
 import languageColors from 'github-language-colors';
 

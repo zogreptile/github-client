@@ -25,6 +25,9 @@ module.exports = {
       template: './src/index.html'
     }),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.ProvidePlugin({
+      'React': 'react',
+    }),
   ],
   module: {
     rules: [
