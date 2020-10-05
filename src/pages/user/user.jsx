@@ -15,6 +15,18 @@ import { getUserinfo } from 'src/actions/user-info';
 import { getRepos } from 'src/actions/repos';
 import { loadMoreRepos } from 'src/actions/load-more-repos';
 
+const propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      username: PropTypes.string,
+    }),
+  }),
+  getUserinfo: PropTypes.func,
+  getRepos: PropTypes.func,
+  nextPageUrl: PropTypes.string,
+  loadMoreRepos: PropTypes.func,
+}
+
 const mapStateToProps = state => ({
   nextPageUrl: state.repos.pagination.next.url,
 });
@@ -24,7 +36,8 @@ const mapDispatchToProps = {
   getRepos,
   loadMoreRepos,
 };
-class User extends React.Component {
+
+class UserPage extends React.Component {
   componentDidMount() {
     const { match, getUserinfo, getRepos } = this.props;
 
@@ -57,6 +70,8 @@ class User extends React.Component {
       </MainLayout>
     );
   }
-} 
+}
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(User));
+UserPage.propTypes = propTypes;
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserPage));

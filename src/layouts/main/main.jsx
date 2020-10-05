@@ -7,6 +7,15 @@ import {
   Loader,
 } from 'semantic-ui-react';
 
+const propTypes = {
+  processing: PropTypes.bool,
+  children: PropTypes.node,
+}
+
+const defaultProps = {
+  processing: false,
+}
+
 const MainLayout = (props) => {
   return (
     <Container>
@@ -29,5 +38,8 @@ const MainLayout = (props) => {
     </Container>
   );
 };
+
+MainLayout.propTypes = propTypes;
+MainLayout.defaultProps = defaultProps;
 
 export default MainLayout;
