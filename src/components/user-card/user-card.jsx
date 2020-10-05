@@ -8,6 +8,8 @@ const UserCard = ({ data, ...props }) => (
     <Image
       className='margin-a'
       src={data.avatar_url}
+      width='132'
+      height='132'
     />
     <Card.Content className='grow-0'>
       <Card.Header
