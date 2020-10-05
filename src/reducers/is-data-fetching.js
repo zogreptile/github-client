@@ -1,9 +1,4 @@
 import {
-  USERS_GET_REQUEST,
-  USERS_GET_SUCCESS,
-  USERS_GET_FAILURE,
-} from 'src/actions/users';
-import {
   USERINFO_GET_REQUEST,
   USERINFO_GET_SUCCESS,
   USERINFO_GET_FAILURE,
@@ -21,13 +16,10 @@ import {
 
 const isDataFetching = (state = false, action) => {
   switch (action.type) {
-    case USERS_GET_REQUEST:
     case USERINFO_GET_REQUEST:
     case REPOS_GET_REQUEST:
     case REPOINFO_GET_REQUEST:
       return true;
-    case USERS_GET_SUCCESS:
-    case USERS_GET_FAILURE:
     case USERINFO_GET_SUCCESS:
     case USERINFO_GET_FAILURE:
     case REPOS_GET_SUCCESS:

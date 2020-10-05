@@ -5,21 +5,33 @@ import Users from 'src/components/users';
 import LoadMoreBtn from 'src/components/load-more-btn';
 
 const propTypes = {
+  isUsersFetching: PropTypes.bool,
+  query: PropTypes.string,
   nextPageUrl: PropTypes.string,
   loadMoreUsers: PropTypes.func,
-}
+  updateQuery: PropTypes.func,
+  getUsers: PropTypes.func,
+};
 
-const Home = ({ nextPageUrl, loadMoreUsers }) => (
-  <MainLayout>
-    <SearchForm />
+const HomePage = (props) => (
+  <MainLayout
+    processing={props.isUsersFetching}
+  >
+    <SearchForm
+      query={props.query}
+      updateQuery={props.updateQuery}
+      getUsers={props.getUsers}
+    />
+
     <Users />
+
     <LoadMoreBtn
-      url={nextPageUrl}
-      action={loadMoreUsers}
+      url={props.nextPageUrl}
+      action={props.loadMoreUsers}
     />
   </MainLayout>
 );
 
-Home.propTypes = propTypes;
+HomePage.propTypes = propTypes;
 
-export default Home;
+export default HomePage;
