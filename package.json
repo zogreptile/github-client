@@ -37,7 +37,7 @@
     "lodash.flow": "^3.5.0",
     "moment": "^2.23.0",
     "parse-link-header": "^1.0.1",
-    "react": "^16.6.1",
+    "react": "^16.13.1",
     "react-dom": "^16.6.1",
     "react-redux": "^5.1.1",
     "react-router-dom": "^4.3.1",
