@@ -18,7 +18,7 @@ import { loadMoreRepos } from 'src/actions/load-more-repos';
 const propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      username: PropTypes.string,
+      id: PropTypes.string,
     }),
   }),
   getUserinfo: PropTypes.func,
@@ -41,8 +41,8 @@ class UserPage extends React.Component {
   componentDidMount() {
     const { match, getUserinfo, getRepos } = this.props;
 
-    getUserinfo(match.params.username);
-    getRepos(match.params.username);
+    getUserinfo(match.params.id);
+    getRepos(match.params.id);
   }
 
   render() {

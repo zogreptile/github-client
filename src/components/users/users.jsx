@@ -32,7 +32,7 @@ const Users = ({ users, isDataFetching }) => {
             <UserCard
               data={el}
               as={Link}
-              to={`/${el.login}`}
+              to={`/users/${el.login}`}
             />
           </Grid.Column>
         ))}
