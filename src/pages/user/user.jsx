@@ -1,6 +1,9 @@
 import { Grid } from 'semantic-ui-react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+
+import MainLayout from 'src/layouts/main';
+
 import UserInfo from 'src/components/user-info';
 import Repos from 'src/components/repos';
 import LoadMoreBtn from 'src/components/load-more-btn';
@@ -33,21 +36,25 @@ class User extends React.Component {
     const { nextPageUrl, loadMoreRepos } = this.props;
 
     return (
-      <Grid>
-        <Grid.Column mobile={16} computer={4}>
-          <UserInfo />
-          <ReposFilter />
-          <ReposSort />
-        </Grid.Column>
-        <Grid.Column mobile={16} computer={12}>
-          <Repos />
-          <LoadMoreBtn
-            url={nextPageUrl}
-            action={loadMoreRepos}
-          />
-        </Grid.Column>
-        <RepoModal />
-      </Grid>
+      <MainLayout>
+        <Grid>
+          <Grid.Column mobile={16} computer={4}>
+            <UserInfo />
+            <ReposFilter />
+            <ReposSort />
+          </Grid.Column>
+
+          <Grid.Column mobile={16} computer={12}>
+            <Repos />
+            <LoadMoreBtn
+              url={nextPageUrl}
+              action={loadMoreRepos}
+            />
+          </Grid.Column>
+
+          <RepoModal />
+        </Grid>
+      </MainLayout>
     );
   }
 } 

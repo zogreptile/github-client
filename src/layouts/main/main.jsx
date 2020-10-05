@@ -3,9 +3,11 @@ import {
   Container,
   Menu,
   Icon,
+  Dimmer,
+  Loader,
 } from 'semantic-ui-react';
 
-const Main = (props) => {
+const MainLayout = (props) => {
   return (
     <Container>
       <Menu pointing secondary>
@@ -15,9 +17,17 @@ const Main = (props) => {
           </Link>
         </Menu.Item>
       </Menu>
-      {props.children}
+
+      {props.processing
+        ? (
+          <Dimmer active={props.processing} inverted>
+            <Loader />
+          </Dimmer>
+        )
+        : props.children
+      }
     </Container>
   );
 };
 
-export default Main;
+export default MainLayout;

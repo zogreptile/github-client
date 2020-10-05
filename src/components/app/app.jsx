@@ -1,6 +1,5 @@
 import { Provider } from "react-redux";
-import { HashRouter, Route } from 'react-router-dom';
-import MainLayout from 'src/layouts/main';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 
 import Home from 'src/pages/home';
 import User from 'src/pages/user';
@@ -8,10 +7,10 @@ import User from 'src/pages/user';
 const App = ({ store }) => (
   <Provider store={store}>
     <HashRouter >
-      <MainLayout>
+      <Switch>
         <Route exact path='/' component={Home} />
         <Route path='/:username' component={User} />
-      </MainLayout>
+      </Switch>
     </HashRouter >
   </Provider>
 );
