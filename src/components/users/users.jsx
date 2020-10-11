@@ -1,15 +1,22 @@
-import { connect } from "react-redux";
 import {
   Grid,
 } from 'semantic-ui-react';
 import UserCard from 'src/components/user-card';
 
-const mapStateToProps = state => ({
-  users: state.users.items,
-});
+const propTypes = {
+  items: PropTypes.arrayOf(PropTypes.shape({
+    to: PropTypes.string,
+    username: PropTypes.string,
+    avatar: PropTypes.string,
+  })),
+};
 
-const Users = ({ users }) => {
-  if (!users.length) {
+const defaultProps = {
+  items: [],
+};
+
+const Users = ({ items }) => {
+  if (!items.length) {
     return null;
   }
 
@@ -18,9 +25,16 @@ const Users = ({ users }) => {
   };
 
   return (
-    <Grid doubling columns={5} style={topMargin}>
-      {users.map(user => (
-        <Grid.Column className='flex' key={user.id}>
+    <Grid
+      doubling
+      columns={5}
+      style={topMargin}
+    >
+      {items.map(user => (
+        <Grid.Column
+          className='flex'
+          key={user.id}
+        >
           <UserCard
             to={`/users/${user.login}`}
             username={user.login}
@@ -32,4 +46,7 @@ const Users = ({ users }) => {
   );
 };
 
-export default connect(mapStateToProps)(Users);
+Users.propTypes = propTypes;
+Users.defaultProps = defaultProps;
+
+export default Users;

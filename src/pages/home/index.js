@@ -7,6 +7,7 @@ import { getUsers } from 'src/actions/users';
 
 const mapStateToProps = state => ({
   isUsersFetching: state.users.isFetching,
+  users: state.users.items,
   nextPageUrl: state.users.pagination.next.url,
   query: state.query,
 });

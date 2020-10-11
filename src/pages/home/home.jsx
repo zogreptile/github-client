@@ -11,6 +11,11 @@ const propTypes = {
   loadMoreUsers: PropTypes.func,
   updateQuery: PropTypes.func,
   getUsers: PropTypes.func,
+  users: PropTypes.arrayOf(PropTypes.shape({
+    to: PropTypes.string,
+    username: PropTypes.string,
+    avatar: PropTypes.string,
+  })),
 };
 
 const HomePage = (props) => (
@@ -23,7 +28,9 @@ const HomePage = (props) => (
       getUsers={props.getUsers}
     />
 
-    <Users />
+    <Users
+      items={props.users}
+    />
 
     <LoadMoreBtn
       url={props.nextPageUrl}
