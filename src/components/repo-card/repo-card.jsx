@@ -3,61 +3,78 @@ import {
   Card,
   Icon,
 } from 'semantic-ui-react';
-import { connect } from "react-redux";
-import moment from 'moment';
 import LanguageIcon from 'src/components/language-icon';
-import { getRepoInfo } from 'src/actions/repo-info';
 
-const mapDispatchToProps = {
-  getRepoInfo,
+const propTypes = {
+  ownerUsername: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  lastUpdatedDate: PropTypes.string,
+  language: PropTypes.string,
+  isFork: PropTypes.bool,
+  stargazersCount: PropTypes.number,
+  getRepoInfo: PropTypes.func,
 };
 
-class RepoCard extends React.Component {
-  handleClick = () => {
-    const { getRepoInfo, data } = this.props;
-    getRepoInfo(data.owner.login, data.name);
-  }
-
-  render() {
-    const { data } = this.props;
-    const updateDate = moment(data.updated_at).format('DD.MM.YYYY');
-
-    return (
-      <Card onClick={this.handleClick}>
-        <Card.Content>
-          <Card.Header
-            className='break-word'
-            content={data.name}
-          />
-          <Card.Meta>Updated at: {updateDate}</Card.Meta>
-          <Card.Description
-            className='break-word'
-            content={data.description}
-          />
-        </Card.Content>
-        <Card.Content className='grow-0'>
-          <Grid columns='2'>
-            <Grid.Column>
-              {data.fork && <Icon name='fork' />}
-              {
-                data.stargazers_count > 0 &&
-                <span><Icon name='star' aria-label='stargazers' /> {data.stargazers_count}</span>
-              }
-            </Grid.Column>
-            <Grid.Column textAlign='right'>
-              {
-                data.language &&
-                <span>
-                  <LanguageIcon language={data.language} />
-                  {data.language}
-                </span>
-              }
-            </Grid.Column>
-          </Grid>
-        </Card.Content>
-      </Card>
+const RepoCard = (props) => {
+  const getRepoData = () => {
+    props.getRepoInfo(
+      props.ownerUsername,
+      props.title,
     );
   }
-};
 
-export default connect(null, mapDispatchToProps)(RepoCard);
+  return (
+    <Card
+      onClick={getRepoData}
+    >
+      <Card.Content>
+        <Card.Header
+          className='break-word'
+          content={props.title}
+        />
+
+        <Card.Meta>
+          {`Updated at: ${props.lastUpdatedDate}`}
+        </Card.Meta>
+
+        <Card.Description
+          className='break-word'
+          content={props.description}
+        />
+      </Card.Content>
+
+      <Card.Content className='grow-0'>
+        <Grid columns='2'>
+          <Grid.Column>
+            {props.isFork && <Icon name='fork' />}
+
+            {
+              props.stargazersCount > 0 && (
+                <span>
+                  <Icon name='star' aria-label='stargazers' />
+                  {props.stargazersCount}
+                </span>
+              )
+            }
+          </Grid.Column>
+
+          <Grid.Column textAlign='right'>
+            {
+              !!props.language && (
+                <span>
+                  <LanguageIcon language={props.language} />
+                  {props.language}
+                </span>
+              )
+            }
+          </Grid.Column>
+        </Grid>
+      </Card.Content>
+    </Card>
+  );
+}
+
+RepoCard.propTypes = propTypes;
+
+export default RepoCard;
