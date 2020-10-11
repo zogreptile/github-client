@@ -1,18 +1,14 @@
 import { connect } from "react-redux";
 import {
   Grid,
-  Loader,
-  Dimmer,
 } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
 import UserCard from 'src/components/user-card';
 
 const mapStateToProps = state => ({
   users: state.users.items,
-  isDataFetching: state.isDataFetching,
 });
 
-const Users = ({ users, isDataFetching }) => {
+const Users = ({ users }) => {
   if (!users.length) {
     return null;
   }
@@ -22,22 +18,17 @@ const Users = ({ users, isDataFetching }) => {
   };
 
   return (
-    <>
-      <Dimmer active={isDataFetching} inverted>
-        <Loader />
-      </Dimmer>
-      <Grid doubling columns={5} style={topMargin}>
-        {users.map(el => (
-          <Grid.Column className='flex' key={el.id}>
-            <UserCard
-              data={el}
-              as={Link}
-              to={`/users/${el.login}`}
-            />
-          </Grid.Column>
-        ))}
-      </Grid>
-    </>
+    <Grid doubling columns={5} style={topMargin}>
+      {users.map(user => (
+        <Grid.Column className='flex' key={user.id}>
+          <UserCard
+            to={`/users/${user.login}`}
+            username={user.login}
+            avatar={user.avatar_url}
+          />
+        </Grid.Column>
+      ))}
+    </Grid>
   );
 };
 
