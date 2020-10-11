@@ -1,25 +1,25 @@
 import { Button } from 'semantic-ui-react';
 
-class LoadMoreBtn extends React.Component {
-  handleClick = () => {
-    const { url, action } = this.props;
-    action(url);
-  }
+const propTypes = {
+  onClick: PropTypes.func,
+};
 
-  render() {
-    const { url } = this.props;
+const defaultProps = {
+  onClick: () => {},
+};
 
-    return url ?
-      <Button
-        className='load-more-btn'
-        fluid
-        color='blue'
-        onClick={this.handleClick}
-      >
-        Load more
-      </Button> :
-      null;
-  }
-}
+const LoadMoreBtn = (props) => (
+  <Button
+    className='load-more-btn'
+    fluid
+    color='blue'
+    onClick={props.onClick}
+  >
+    Load more
+  </Button>
+)
+
+LoadMoreBtn.propTypes = propTypes;
+LoadMoreBtn.defaultProps = defaultProps;
 
 export default LoadMoreBtn;

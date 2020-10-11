@@ -18,26 +18,33 @@ const propTypes = {
   })),
 };
 
-const HomePage = (props) => (
-  <MainLayout
-    processing={props.isUsersFetching}
-  >
-    <SearchForm
-      query={props.query}
-      updateQuery={props.updateQuery}
-      getUsers={props.getUsers}
-    />
+const HomePage = (props) => {
+  const loadMoreUsers = () => {
+    props.loadMoreUsers(props.nextPageUrl);
+  };
 
-    <Users
-      items={props.users}
-    />
+  return (
+    <MainLayout
+      processing={props.isUsersFetching}
+    >
+      <SearchForm
+        query={props.query}
+        updateQuery={props.updateQuery}
+        getUsers={props.getUsers}
+      />
 
-    <LoadMoreBtn
-      url={props.nextPageUrl}
-      action={props.loadMoreUsers}
-    />
-  </MainLayout>
-);
+      <Users
+        items={props.users}
+      />
+
+      {!!props.nextPageUrl && (
+        <LoadMoreBtn
+          onClick={loadMoreUsers}
+        />
+      )}
+    </MainLayout>
+  );
+}
 
 HomePage.propTypes = propTypes;
 
