@@ -3,6 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
+const ENV = process.env.ENV || 'dev';
+
 module.exports = {
   entry: {
     app: './src/index.js',
@@ -15,6 +17,7 @@ module.exports = {
     extensions: ['.js', '.jsx'],
     alias: {
       src: path.resolve(__dirname, '../src'),
+      'app.dependencies.env': path.resolve(__dirname, `../src/app.dependencies.${ENV}`),
     },
   },
   plugins: [

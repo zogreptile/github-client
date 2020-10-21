@@ -4,7 +4,7 @@
   "description": "Github client app",
   "scripts": {
     "start": "webpack-dev-server --open --config config/webpack.dev.js",
-    "build": "webpack --progress --config config/webpack.prod.js",
+    "build": "ENV=production webpack --progress --config config/webpack.prod.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
@@ -16,6 +16,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/preset-env": "^7.1.5",
     "@babel/preset-react": "^7.0.0",
+    "axios-mock-adapter": "^1.18.2",
     "babel-loader": "^8.0.4",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^2.1.0",

@@ -1,5 +1,7 @@
 import '@babel/polyfill';
 
+import 'app.dependencies.env';
+
 import ReactDOM from 'react-dom';
 import store from './store';
 import App from 'src/components/app';
