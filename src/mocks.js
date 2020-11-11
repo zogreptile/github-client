@@ -4,6 +4,10 @@ const MockAdapter = require("axios-mock-adapter");
 const users = require('src/mocks/users');
 const user = require('src/mocks/user');
 const repos = require('src/mocks/repos');
+const repoGeneralInfo = require('src/mocks/repo-general-info');
+const repoContributors = require('src/mocks/repo-contributors');
+const repoLanguages = require('src/mocks/repo-languages');
+const repoPullRequests = require('src/mocks/repo-pull-requests');
 
 const mock = new MockAdapter(axios);
 
@@ -41,5 +45,41 @@ mock
     return [
       200,
       user,
+    ];
+  });
+
+mock
+  .onGet(/\/repos\/(.*)\/(.*)\/contributors$/) // /repos/:username/:reponame/contributors
+  .reply(() => {
+    return [
+      200,
+      repoContributors,
+    ];
+  });
+
+mock
+  .onGet(/\/repos\/(.*)\/(.*)\/languages$/) // /repos/:username/:reponame/languages
+  .reply(() => {
+    return [
+      200,
+      repoLanguages,
+    ];
+  });
+
+mock
+  .onGet(/\/repos\/(.*)\/(.*)\/pulls(.*)/) // /repos/:username/:reponame/pulls?sort=popularity&direction=desc
+  .reply(() => {
+    return [
+      200,
+      repoPullRequests,
+    ];
+  });
+
+mock
+  .onGet(/\/repos\/(.*)\/(.*)/) // /repos/:username/:reponame
+  .reply(() => {
+    return [
+      200,
+      repoGeneralInfo,
     ];
   });
