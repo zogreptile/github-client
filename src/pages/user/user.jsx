@@ -41,6 +41,17 @@ const propTypes = {
   })),
   filter: PropTypes.shape({}),
   sort: PropTypes.shape({}),
+  repoInfo: PropTypes.shape({
+    contributors: PropTypes.arrayOf(PropTypes.shape({})),
+    general: PropTypes.shape({}),
+    languages: PropTypes.shape({}),
+    pullRequests: PropTypes.arrayOf(PropTypes.shape({})),
+  }),
+  repoModal: PropTypes.shape({
+    isOpen: PropTypes.bool,
+  }),
+  openRepoModal: PropTypes.func,
+  closeRepoModal: PropTypes.func,
 }
 
 class UserPage extends React.Component {
@@ -72,8 +83,6 @@ class UserPage extends React.Component {
   }
 
   render() {
-    const { nextPageUrl, loadMoreRepos } = this.props;
-
     return (
       <MainLayout>
         <Grid>
@@ -118,7 +127,14 @@ class UserPage extends React.Component {
             )}
           </Grid.Column>
 
-          <RepoModal />
+          <RepoModal
+            isOpen={this.props.repoModal.isOpen}
+            onClose={this.props.closeRepoModal}
+            contributors={this.props.repoInfo.contributors}
+            general={this.props.repoInfo.general}
+            languages={this.props.repoInfo.languages}
+            pullRequests={this.props.repoInfo.pullRequests}
+          />
         </Grid>
       </MainLayout>
     );

@@ -6,29 +6,47 @@ import {
   Image,
   Grid,
 } from 'semantic-ui-react';
-import { connect } from 'react-redux';
 import LanguageIcon from 'src/components/language-icon';
-import {
-  openRepoModal,
-  closeRepoModal,
-} from 'src/actions/repo-modal';
 
-const mapStateToProps = state => ({
-  repoInfo: state.repoInfo,
-  repoModal: state.repoModal,
-});
-
-const mapDispatchToProps = {
-  openRepoModal,
-  closeRepoModal,
+const propTypes = {
+  isOpen: PropTypes.bool,
+  contributors: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    contributions: PropTypes.number,
+    html_url: PropTypes.string,
+    avatar_url: PropTypes.string,
+    login: PropTypes.string,
+  })),
+  general: PropTypes.shape({
+    html_url: PropTypes.string,
+    full_name: PropTypes.string,
+    name: PropTypes.string,
+    fork: PropTypes.bool,
+  }),
+  languages: PropTypes.shape({}), // { "Python": 7769 }
+  pullRequests: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    html_url: PropTypes.string,
+    title: PropTypes.string,
+    user: PropTypes.shape({
+      avatar_url: PropTypes.string,
+    }),
+  })),
+  onClose: PropTypes.func.isRequired,
 };
 
-const renderContributors = data => {
-  if (!data.length) {
+const defaultProps = {
+  isOpen: false,
+  contributors: [],
+  general: {},
+  languages: {},
+  pullRequests: [],
+};
+
+const renderContributors = contributors => {
+  if (!contributors.length) {
     return null
   }
-
-  const contributors = [...data];
 
   return (
     <>
@@ -58,19 +76,23 @@ const renderLanguages = (data) => {
     .map((lang) => (
       <Grid.Column key={lang}>
         <LanguageIcon language={lang} />
-        {lang}: {(data[lang] / 1024).toFixed(2)} kB
+        {lang}: {`${(data[lang] / 1024).toFixed(2)} kB`}
       </Grid.Column>
     ));
 
-  return languageItems.length ?
+  if (!languageItems.length) {
+    return null;
+  }
+
+  return (
     <>
       <Divider />
       <Header as='h3'>Languages:</Header>
       <Grid columns={3}>
         {languageItems}
       </Grid>
-    </> :
-    null;
+    </>
+  );
 };
 
 const renderPullRequests = (data) => {
@@ -87,9 +109,17 @@ const renderPullRequests = (data) => {
           .slice(0, 5)
           .map((pr) => (
             <Grid.Column key={pr.id}>
-              <a href={pr.html_url} target='_blank'>
-                <Image src={pr.user.avatar_url} avatar />
-                <span>{pr.title}</span>
+              <a
+                href={pr.html_url}
+                target='_blank'
+              >
+                <Image
+                  src={pr.user.avatar_url}
+                  avatar
+                />
+                <span>
+                  {pr.title}
+                </span>
               </a>
             </Grid.Column>
           ))}
@@ -99,54 +129,65 @@ const renderPullRequests = (data) => {
 };
 
 class RepoModal extends React.Component {
-  handleOpen = () => {
-    const { openRepoModal } = this.props;
-    openRepoModal();
-  }
-
-  handleClose = () => {
-    const { closeRepoModal } = this.props;
-    closeRepoModal();
-  }
-
   render() {
-    const { repoInfo, repoModal } = this.props;
+    const {
+      isOpen,
+      onClose,
+      contributors,
+      general,
+      languages,
+      pullRequests,
+    } = this.props;
+
     return (
-      Object.keys(repoInfo).length ?
       <Modal
-        open={repoModal.isOpen}
-        onClose={this.handleClose}
+        open={isOpen}
+        onClose={onClose}
       >
         <Modal.Content className='repo-modal__header'>
           <Header as='h1'>
-            <a href={repoInfo.general.html_url} target='_blank'>{repoInfo.general.name}</a>
-            {
-              repoInfo.general.fork &&
+            <a
+              href={general.html_url}
+              target='_blank'
+            >
+              {general.name}
+            </a>
+
+            {general.fork && (
               <Header.Subheader as='span'>
                 <span>
                   {'forked from '}
-                  <a href={repoInfo.general.parent.html_url} target='_blank'>{repoInfo.general.parent.full_name}</a>
+                  <a
+                    href={general.html_url}
+                    target='_blank'
+                  >
+                    {general.full_name}
+                  </a>
                 </span>
               </Header.Subheader>
-            }
+            )}
           </Header>
         </Modal.Content>
+
         <Modal.Content>
-          {renderContributors(repoInfo.contributors)}
-          {renderLanguages(repoInfo.languages)}
-          {renderPullRequests(repoInfo.pullRequests)}
+          {renderContributors(contributors)}
+          {renderLanguages(languages)}
+          {renderPullRequests(pullRequests)}
         </Modal.Content>
+
         <Modal.Actions>
           <Button
             color='green'
-            onClick={this.handleClose}
+            onClick={onClose}
             content='Close'
           />
         </Modal.Actions>
-      </Modal> :
-      null
+      </Modal>
     );
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RepoModal);
+RepoModal.propTypes = propTypes;
+RepoModal.defaultProps = defaultProps;
+
+export default RepoModal;

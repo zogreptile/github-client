@@ -4,6 +4,10 @@ import { getUserinfo } from 'src/actions/user-info';
 import { getRepos } from 'src/actions/repos';
 import { loadMoreRepos } from 'src/actions/load-more-repos';
 import { getRepoInfo } from 'src/actions/repo-info';
+import {
+  openRepoModal,
+  closeRepoModal,
+} from 'src/actions/repo-modal';
 
 import UserPage from './user';
 
@@ -12,6 +16,8 @@ const mapStateToProps = state => ({
   filter: state.filter,
   sort: state.sort,
   nextPageUrl: state.repos.pagination.next.url,
+  repoInfo: state.repoInfo,
+  repoModal: state.repoModal,
 });
 
 const mapDispatchToProps = {
@@ -19,6 +25,8 @@ const mapDispatchToProps = {
   getRepos,
   getRepoInfo,
   loadMoreRepos,
+  openRepoModal,
+  closeRepoModal,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage);
