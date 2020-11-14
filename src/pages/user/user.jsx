@@ -18,6 +18,14 @@ import filterRepos from 'src/utlis/filter-repos';
 import sortRepos from 'src/utlis/sort-repos';
 
 const propTypes = {
+  userInfo: PropTypes.shape({
+    avatar_url: PropTypes.string,
+    name: PropTypes.string,
+    login: PropTypes.string,
+    html_url: PropTypes.string,
+    company: PropTypes.string,
+    location: PropTypes.string,
+  }),
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string,
@@ -98,7 +106,9 @@ class UserPage extends React.Component {
             mobile={16}
             computer={4}
           >
-            <UserInfo />
+            <UserInfo
+              userInfo={this.props.userInfo}
+            />
 
             <ReposFilter
               repos={this.props.repos}

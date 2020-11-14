@@ -1,4 +1,3 @@
-import { connect } from "react-redux";
 import {
   Image,
   Segment,
@@ -7,9 +6,17 @@ import {
   Divider,
 } from 'semantic-ui-react';
 
-const mapStateToProps = state => ({
-  userInfo: state.userInfo,
-});
+const propTypes = {
+  userInfo: PropTypes.shape({
+    avatar_url: PropTypes.string,
+    name: PropTypes.string,
+    login: PropTypes.string,
+    html_url: PropTypes.string,
+    company: PropTypes.string,
+    location: PropTypes.string,
+  }),
+};
+
 class UserInfo extends React.Component {
   render() {
     const { userInfo } = this.props;
@@ -20,38 +27,44 @@ class UserInfo extends React.Component {
           size='tiny'
           bordered
         />
+
         <Header
           size='large'
           content={userInfo.name}
           subheader={userInfo.login}
         />
+
         <Divider />
+
         <a
           href={userInfo.html_url}
           target='_blank'
         >
           Github page
         </a>
+
         <Divider />
+
         <List>
-          {userInfo.company
-            ? <List.Item 
+          {userInfo.company && (
+            <List.Item 
               icon='users'
               content={userInfo.company}
             />
-            : null
-          }
-          {userInfo.location
-            ? <List.Item 
+          )}
+
+          {userInfo.location && (
+            <List.Item 
               icon='map marker alternate'
               content={userInfo.location}
             />
-            : null
-          }
+          )}
         </List>
       </Segment>
     );
   }
 };
 
-export default connect(mapStateToProps)(UserInfo);
+UserInfo.propTypes = propTypes;
+
+export default UserInfo;

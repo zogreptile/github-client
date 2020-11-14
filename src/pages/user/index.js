@@ -26,6 +26,7 @@ import {
 import UserPage from './user';
 
 const mapStateToProps = state => ({
+  userInfo: state.userInfo,
   repos: state.repos.items,
   filter: state.filter,
   sort: state.sort,
