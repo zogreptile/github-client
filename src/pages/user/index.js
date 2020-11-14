@@ -5,6 +5,15 @@ import { getRepos } from 'src/actions/repos';
 import { loadMoreRepos } from 'src/actions/load-more-repos';
 import { getRepoInfo } from 'src/actions/repo-info';
 import {
+  issuesFilter,
+  topicsFilter,
+  starredFilter,
+  lastUpdatedFilter,
+  typeFilter,
+  languageFilter,
+  resetFilter,
+} from 'src/actions/filter';
+import {
   openRepoModal,
   closeRepoModal,
 } from 'src/actions/repo-modal';
@@ -27,6 +36,14 @@ const mapDispatchToProps = {
   loadMoreRepos,
   openRepoModal,
   closeRepoModal,
+
+  issuesFilter,
+  topicsFilter,
+  starredFilter,
+  lastUpdatedFilter,
+  typeFilter,
+  languageFilter,
+  resetFilter,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage);

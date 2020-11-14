@@ -1,34 +1,24 @@
-import { connect } from "react-redux";
 import {
   Button,
   Form,
   Segment,
 } from 'semantic-ui-react';
 import { DateInput } from 'semantic-ui-calendar-react';
-import {
-  issuesFilter,
-  topicsFilter,
-  starredFilter,
-  lastUpdatedFilter,
-  typeFilter,
-  languageFilter,
-  resetFilter,
-} from 'src/actions/filter';
+
 import getLanguages from 'src/utlis/get-languages';
 
-const mapStateToProps = state => ({
-  repos: state.repos.items,
-  filter: state.filter,
-});
-
-const mapDispatchToProps = {
-  issuesFilter,
-  topicsFilter,
-  starredFilter,
-  lastUpdatedFilter,
-  typeFilter,
-  languageFilter,
-  resetFilter,
+const propTypes = {
+  repos: PropTypes.arrayOf(PropTypes.shape({
+    language: PropTypes.string,
+  })),
+  filter: PropTypes.shape({}),
+  issuesFilter: PropTypes.func,
+  topicsFilter: PropTypes.func,
+  starredFilter: PropTypes.func,
+  lastUpdatedFilter: PropTypes.func,
+  typeFilter: PropTypes.func,
+  languageFilter: PropTypes.func,
+  resetFilter: PropTypes.func,
 };
 
 class ReposFilter extends React.Component {
@@ -149,4 +139,6 @@ class ReposFilter extends React.Component {
   }
 } 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReposFilter);
+ReposFilter.propTypes = propTypes;
+
+export default ReposFilter;

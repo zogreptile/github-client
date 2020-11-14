@@ -52,6 +52,14 @@ const propTypes = {
   }),
   openRepoModal: PropTypes.func,
   closeRepoModal: PropTypes.func,
+
+  issuesFilter: PropTypes.func,
+  topicsFilter: PropTypes.func,
+  starredFilter: PropTypes.func,
+  lastUpdatedFilter: PropTypes.func,
+  typeFilter: PropTypes.func,
+  languageFilter: PropTypes.func,
+  resetFilter: PropTypes.func,
 }
 
 class UserPage extends React.Component {
@@ -91,7 +99,19 @@ class UserPage extends React.Component {
             computer={4}
           >
             <UserInfo />
-            <ReposFilter />
+
+            <ReposFilter
+              repos={this.props.repos}
+              filter={this.props.filter}
+              issuesFilter={this.props.issuesFilter}
+              topicsFilter={this.props.topicsFilter}
+              starredFilter={this.props.starredFilter}
+              lastUpdatedFilter={this.props.lastUpdatedFilter}
+              typeFilter={this.props.typeFilter}
+              languageFilter={this.props.languageFilter}
+              resetFilter={this.props.resetFilter}
+            />
+
             <ReposSort />
           </Grid.Column>
 
