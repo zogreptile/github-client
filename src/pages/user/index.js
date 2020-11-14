@@ -17,6 +17,11 @@ import {
   openRepoModal,
   closeRepoModal,
 } from 'src/actions/repo-modal';
+import {
+  setSortType,
+  setSortDirection,
+  resetSort,
+} from 'src/actions/sort';
 
 import UserPage from './user';
 
@@ -44,6 +49,10 @@ const mapDispatchToProps = {
   typeFilter,
   languageFilter,
   resetFilter,
+
+  setSortType,
+  setSortDirection,
+  resetSort,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage);

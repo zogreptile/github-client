@@ -1,23 +1,17 @@
-import { connect } from "react-redux";
 import {
   Button,
   Form,
   Segment,
 } from 'semantic-ui-react';
-import {
-  setSortType,
-  setSortDirection,
-  resetSort,
-} from 'src/actions/sort';
 
-const mapStateToProps = state => ({
-  sort: state.sort,
-});
-
-const mapDispatchToProps = {
-  setSortType,
-  setSortDirection,
-  resetSort,
+const propTypes = {
+  sort: PropTypes.shape({
+    type: PropTypes.string,
+    direction: PropTypes.string,
+  }),
+  setSortType: PropTypes.func,
+  setSortDirection: PropTypes.func,
+  resetSort: PropTypes.func,
 };
 
 const sortOptions = [
@@ -87,4 +81,6 @@ class ReposSort extends React.Component {
   }
 } 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReposSort);
+ReposSort.propTypes = propTypes;
+
+export default ReposSort;

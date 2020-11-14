@@ -112,7 +112,12 @@ class UserPage extends React.Component {
               resetFilter={this.props.resetFilter}
             />
 
-            <ReposSort />
+            <ReposSort
+              sort={this.props.sort}
+              setSortType={this.props.setSortType}
+              setSortDirection={this.props.setSortDirection}
+              resetSort={this.props.resetSort}
+            />
           </Grid.Column>
 
           <Grid.Column
