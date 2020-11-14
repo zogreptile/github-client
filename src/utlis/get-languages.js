@@ -1,16 +1,15 @@
 const getLanguages = (repos) => {
-  const defaultValue = [
-    'All',
-    {
-      text: 'All',
-      value: 'all',
-    },
-  ];
-  const languages = new Map([defaultValue]);
+  const languages = {
+    All: { text: 'All', value: 'All' },
+  };
+
   repos.forEach(({ language }) => {
-    language && languages.set(language, { text: language, value: language });
+    if (language) {
+      languages[language] = { text: language, value: language };
+    }
   });
-  return [...languages.values()];
+
+  return Object.values(languages);
 };
 
 export default getLanguages;
